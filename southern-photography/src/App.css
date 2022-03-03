@@ -1,15 +1,38 @@
-@import url('https://fonts.googleapis.com/css2?family=Charmonman:wght@400;700&family=Arya&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Arya&family=Charmonman:wght@400;700&family=Croissant+One&display=swap');
 :root {
   font-size: 10px;
   --primary: #80A95B;
   --secondary: #443730;
-  --trinary: 
+  --trinary: #FFF;
 }
 .App {
-  margin: 20px;
+  
 }
 a {
   font-family: 'Charmonman', cursive !important;
   font-size: 2em;
   font-weight: 700;
+}
+body {
+  background-color: var(--secondary);
+}
+.divider {
+  width: 80%;
+  height: 5px;
+  background-color: black;
+  margin: auto;
+}
+.formControl {
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
+  margin: 5px;
+  width: 40%;
+}
+@media only screen and (max-width: 600px) {
+  .formControl {
+    display: block;
+    width: 90%;
+  }
 }

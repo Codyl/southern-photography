@@ -14,9 +14,9 @@ function App() {
   return (
     <BrowserRouter>
         <Header/>
-        <SocialMedia/>
+        {/* <SocialMedia/> */}
       <div className="App">
-        <div style={{height: '40px'}}></div>
+        {/* <div style={{height: '40px'}}></div> */}
         <Switch>
           <Route exact path='/' component={Home}/>
           <Route exact path='/about' component={About}/>
