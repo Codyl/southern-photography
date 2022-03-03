@@ -2,14 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import aboutImage from '../images/group1-0.jpg';
 
-const LargeImage = styled.img`
-position: absolute;
-left: 0;
-top: 0;
-width: 100vw;
-height: auto;
-z-index: -1;
-`;
 const serviceItemBoxSize = 250;
 
 const ServiceItem = styled.img`

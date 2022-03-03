@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import Header from './components/HeaderComponent';
 import Home from './components/HomeComponent';
@@ -8,7 +7,6 @@ import Contact from './components/ContactComponent';
 import Investments from './components/InvestmentsComponent';
 import Wedding from './components/WeddingComponent';
 import Portfolio from './components/PortfolioComponent';
-import SocialMedia from './components/SocialMediaComponent';
 
 function App() {
   return (

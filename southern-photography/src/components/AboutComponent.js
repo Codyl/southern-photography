@@ -1,7 +1,6 @@
 import React from 'react';
 import aboutImage from '../images/image 2.png';
 import styled from 'styled-components';
-import react from 'react';
 
 const Divider = styled.div`
 width: 80%;

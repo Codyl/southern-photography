@@ -1,13 +1,12 @@
 import {useState, useEffect, useRef} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Navbar, NavbarToggler, Collapse, Nav, NavItem, NavLink, NavbarBrand} from 'reactstrap';
+import {Navbar, NavbarToggler, Collapse, Nav, NavItem, NavLink} from 'reactstrap';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import logo from '../images/logo2.png';
 
 
   const Image = styled.img`width: 200px;`;
-  const BrandBG = styled.div`background-color: #F9F9F9; border-radius: 50%;`;
   const NavItem2 = styled(NavItem)`
   padding: 0 auto;
   margin: 0 0 0 0;
