@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import image1 from "../images/group1-1.jpg";
 // function importAll(r) {
 //   return r.keys().map(r);
 // }
@@ -41,12 +42,8 @@ export default function Portfolio() {
           <li><Link to='portfolio/graduation'>Graduation</Link></li>
           <li><Link to='portfolio/boudoir'>Boudoir</Link></li>
         </ul>
-        <ImageGallery>
-          {/* {images.map((image, i) => <img src='../images/group1-0.jpg' alt='portfolioImage' key={i}/>)} */}
-        </ImageGallery>
-        <AlbumSelect>
-          <AlbumTab></AlbumTab>
-        </AlbumSelect>
+          <img src={image1} alt="" />
+        
       </div>
     </div>
   );
