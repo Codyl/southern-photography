@@ -1,6 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 import image1 from "../images/group1-1.jpg";
 // function importAll(r) {
 //   return r.keys().map(r);
@@ -8,43 +8,45 @@ import image1 from "../images/group1-1.jpg";
 
 // const images = importAll(require.context('../../images/', false, /\.(png|jpe?g|svg)$/));
 // console.log(images)
-const ImageGallery = styled.div`
-height: 400px;
-background-color: grey;
-width: 90%;
-margin: 0 5%;
+
+const Column = styled.div`
+  width: 10vw;
 `;
-const AlbumSelect = styled.div`
-height: 100px;
-background-color: grey;
-width: 90%;
-margin: 10px 5%;
-position: absolute;
+const Image = styled.img`
+  width: inherit;
 `;
-const AlbumTab = styled.div`
-position: relative;
-top: 100%;
-width: 50px;
-height: 10px;
-background-color: grey;
-`;
+
+const getImages = async () => {
+  try {
+    const response = await fetch("http://localhost:3001/images/collection");
+    let files = await response.text();
+    // console.log(files);
+    return files;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 export default function Portfolio() {
+  const [images, setImages] = useState(null);
+
+  useEffect(() => {
+    async function fetchData() {
+      const data = await getImages();
+      setImages(data);
+    }
+    fetchData();
+    // console.log(images);
+  }, []);
+  useEffect(() => {
+    console.log(images);
+  }, [images]);
   return (
     <div>
-      <div>
-        <ul className='d-flex justify-content-around' style={{listStyleType: 'none'}}>
-          <li><Link to='portfolio/couples'>Couples</Link></li>
-          <li><Link to='portfolio/family'>Family</Link></li>
-          <li><Link to='portfolio/wedding'>Wedding</Link></li>
-          <li><Link to='portfolio/maternity'>Maternity</Link></li>
-          <li><Link to='portfolio/newborn'>Newborn</Link></li>
-          <li><Link to='portfolio/birthday'>Birthday</Link></li>
-          <li><Link to='portfolio/graduation'>Graduation</Link></li>
-          <li><Link to='portfolio/boudoir'>Boudoir</Link></li>
-        </ul>
-          <img src={image1} alt="" />
-        
-      </div>
+      {images && Object.keys(images)[0]}
+      {/* <Column>
+        <Image src={`data:image/jpeg;base64, ${images}`} alt="portfolio" />
+      </Column> */}
     </div>
   );
 }
