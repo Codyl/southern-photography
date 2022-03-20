@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import aboutImage from "../images/group1-0.jpg";
+import elopement from "../images/elopement.jpg";
+import engagement from "../images/engagement.jpg";
+import halfDay from "../images/half-day.jpg";
+import wholeDay from "../images/full-day.jpg";
 
 const serviceItemBoxSize = 250;
 
@@ -31,7 +34,7 @@ const services = [
     location: "local",
     photographers: 1,
     sessionLength: 2,
-    image: aboutImage,
+    image: elopement,
   },
   {
     name: "engagement",
@@ -39,7 +42,7 @@ const services = [
     location: "local",
     photographers: 1,
     sessionLength: 2,
-    image: aboutImage,
+    image: engagement,
   },
   {
     name: "half-day",
@@ -47,7 +50,7 @@ const services = [
     location: "local",
     photographers: 1,
     sessionLength: 2,
-    image: aboutImage,
+    image: halfDay,
   },
   {
     name: "whole-day",
@@ -55,7 +58,7 @@ const services = [
     location: "local",
     photographers: 1,
     sessionLength: 2,
-    image: aboutImage,
+    image: wholeDay,
   },
 ];
 
@@ -73,11 +76,11 @@ const ServiceItemContainer = ({ src, service }) => {
           bottom: "125px",
         }}
       >
-        <ServiceItemText>{service.name}</ServiceItemText>
+        <ServiceItemText>{service.name.toUpperCase()}</ServiceItemText>
       </div>
       <p>
-        {service.name} | ${service.price} | {service.photographers}{" "}
-        Photographer(s) | {service.sessionLength} hours
+        ${service.price} | {service.photographers} Photographer(s) |{" "}
+        {service.sessionLength} hours
       </p>
     </div>
   );

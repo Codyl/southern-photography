@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import aboutImage from "../images/group1-0.jpg";
+import graduation from "../images/graduation.jpg";
+import birthday from "../images/birthday.jpg";
+import boudoir from "../images/boudoir.jpg";
+import couples from "../images/couples.jpg";
+import family from "../images/family.jpg";
+import maternity from "../images/maternity.jpg";
 
 const serviceItemBoxSize = 250;
 
@@ -22,6 +27,7 @@ const ServiceItemText = styled.p`
   color: black;
   opacity: 1;
   font-size: 2em;
+  padding: 10px;
 `;
 
 const services = [
@@ -31,7 +37,7 @@ const services = [
     location: "local",
     photographers: 1,
     sessionLength: 2,
-    image: aboutImage,
+    image: couples,
   },
   {
     name: "Family",
@@ -39,7 +45,7 @@ const services = [
     location: "local",
     photographers: 1,
     sessionLength: 2,
-    image: aboutImage,
+    image: family,
   },
   {
     name: "Maternity",
@@ -47,7 +53,7 @@ const services = [
     location: "local",
     photographers: 1,
     sessionLength: 2,
-    image: aboutImage,
+    image: maternity,
   },
   {
     name: "Birthday",
@@ -55,7 +61,7 @@ const services = [
     location: "local",
     photographers: 1,
     sessionLength: 2,
-    image: aboutImage,
+    image: birthday,
   },
   {
     name: "Graduation",
@@ -63,7 +69,7 @@ const services = [
     location: "local",
     photographers: 1,
     sessionLength: 2,
-    image: aboutImage,
+    image: graduation,
   },
   {
     name: "Bodouir",
@@ -71,7 +77,7 @@ const services = [
     location: "local",
     photographers: 1,
     sessionLength: 2,
-    image: aboutImage,
+    image: boudoir,
   },
 ];
 
@@ -84,21 +90,29 @@ const ServiceItemContainer = ({ src, service }) => {
           width: serviceItemBoxSize,
           height: "50px",
           backgroundColor: "gray",
-          opacity: "1",
+          opacity: "0.75",
           position: "relative",
           bottom: "125px",
         }}
       >
-        <ServiceItemText>{service.name}</ServiceItemText>
+        <ServiceItemText>{service.name.toUpperCase()}</ServiceItemText>
       </div>
-      <p>
-        {service.name} | ${service.price} | {service.photographers}{" "}
-        Photographer(s) | {service.sessionLength} hours
+      <p style={{ fontSize: "1.5em", marginTop: "-40px" }}>
+        ${service.price} | {service.photographers} Photographer(s) |{" "}
+        {service.sessionLength} hours
       </p>
     </div>
   );
 };
 export default function Investments() {
+  const [images, setImages] = useState();
+
+  useEffect(() => {
+    fetch("http://localhost:3001/images/").then((response) => {
+      console.log(response);
+    });
+  });
+
   return (
     <>
       {/* <LargeImage />

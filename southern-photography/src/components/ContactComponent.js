@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Form } from "reactstrap";
-import contactImage from "../images/group1-2.jpg";
+import contactImage from "../images/letter.jpg";
 
 const ContactForm = styled.div`
   padding: 30px;
@@ -11,14 +11,17 @@ const ContactButton = styled.button`
   border-radius: 16px;
   padding: 5px 20px;
   box-shadow: 3px 3px 8px black;
+  font-size: 1.5em;
+  margin: 1rem;
 `;
 const ContactParagraph = styled.p`
   font-size: 2em;
+  margin: 10px 30px;
 `;
 const ContactImage = styled.img`
   width: 800px;
   height: 80vh;
-  margin: 0 10px;
+  margin-right: 10px;
   display: block;
 `;
 
@@ -46,23 +49,23 @@ export default function Contact() {
             Get in touch!
           </h2>
           <h3 className="text-center">-- We cant wait to hear from you! --</h3>
-          <Form action="">
+          <Form method="POST" action="https://formspree.io/f/xoqpbeaw">
             <input
               type="text"
               className="formControl smallInput"
-              name=""
-              id=""
+              name="name"
+              id="name"
               placeholder="Name"
             />
             <input
               type="text"
               className="formControl smallInput"
-              name=""
-              id=""
+              name="_replyto"
+              id="email"
               placeholder="email"
             />
             <textarea
-              className="form-control"
+              className="formControl form-control"
               name=""
               id=""
               cols="30"

@@ -7,6 +7,7 @@ import {
   Nav,
   NavItem,
   NavLink,
+  NavbarBrand,
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -19,9 +20,10 @@ const NavItem2 = styled(NavItem)`
   padding: 0 auto;
   margin: 0 0 0 0;
 `;
-const Navbar2 = styled(Navbar)``;
+const Navbar2 = styled(Navbar)`
+  height: 10vh;
+`;
 const Highlight = styled.span`
-  height: 10px;
   background: red;
   transition: all 0.2s;
   position: absolute;
@@ -42,6 +44,7 @@ function highlightLink(e) {
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState("");
   const highlightRef = useRef(null);
 
   useEffect(() => {
@@ -49,9 +52,17 @@ export default function Header() {
     triggers.forEach((l) => l.addEventListener("mouseenter", highlightLink));
   }, []);
 
+  function getActiveClassName(e) {
+    console.log(e.target);
+    return "";
+  }
+
   return (
     <div>
-      <Navbar2 color="light" expand="sm" light>
+      <Navbar2 color="light" expand="md" light>
+        <NavbarBrand href="#">
+          <Image src={logo} />
+        </NavbarBrand>
         <NavbarToggler
           onClick={() => {
             setOpen(!open);
@@ -59,38 +70,58 @@ export default function Header() {
         />
         <Collapse isOpen={open} navbar>
           <Nav
-            className="mx-auto d-flex justify-content-between container"
+            className="mx-auto d-flex justify-content-around container"
             navbar
           >
             <Highlight ref={highlightRef}></Highlight>
-            <Image src={logo} />
+
             <NavItem2>
-              <NavLink tag={Link} to="/">
+              <NavLink className={() => getActiveClassName()} tag={Link} to="/">
                 Home
               </NavLink>
             </NavItem2>
             <NavItem2>
-              <NavLink tag={Link} to="/about">
+              <NavLink
+                className={() => getActiveClassName()}
+                tag={Link}
+                to="/about"
+              >
                 About
               </NavLink>
             </NavItem2>
             <NavItem2>
-              <NavLink tag={Link} to="/wedding">
+              <NavLink
+                className={() => getActiveClassName()}
+                tag={Link}
+                to="/wedding"
+              >
                 Wedding
               </NavLink>
             </NavItem2>
             <NavItem2>
-              <NavLink tag={Link} to="/portfolio">
+              <NavLink
+                className={() => getActiveClassName()}
+                tag={Link}
+                to="/portfolio"
+              >
                 Portfolio
               </NavLink>
             </NavItem2>
             <NavItem2>
-              <NavLink tag={Link} to="/investments">
+              <NavLink
+                className={() => getActiveClassName()}
+                tag={Link}
+                to="/investments"
+              >
                 Investments
               </NavLink>
             </NavItem2>
             <NavItem2>
-              <NavLink tag={Link} to="/contact">
+              <NavLink
+                className={() => getActiveClassName()}
+                tag={Link}
+                to="/contact"
+              >
                 Contact
               </NavLink>
             </NavItem2>
