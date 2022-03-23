@@ -43,19 +43,29 @@ function highlightLink(e) {
 }
 
 export default function Header() {
+  let path = window.location.pathname;
+  path = path.replace("/", "");
   const [open, setOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState("");
+  const [activeTab, setActiveTab] = useState(path);
   const highlightRef = useRef(null);
 
   useEffect(() => {
-    const triggers = document.querySelectorAll("a");
-    triggers.forEach((l) => l.addEventListener("mouseenter", highlightLink));
-  }, []);
+    // const triggers = document.querySelectorAll("a");
+    // triggers.forEach((l) => l.addEventListener("mouseenter", highlightLink));
+    setClassForActiveTab();
+  }, [activeTab]);
 
-  function getActiveClassName(e) {
-    console.log(e.target);
-    return "";
-  }
+  const setClassForActiveTab = () => {
+    const navTabs = document.getElementsByClassName("nav-tab");
+    Array.from(navTabs).map((element) => {
+      element.classList.remove("active");
+    });
+
+    const activeTabElement = document.getElementById(activeTab);
+    if (!!activeTabElement) {
+      activeTabElement.classList.add("active");
+    }
+  };
 
   return (
     <div>
@@ -76,13 +86,21 @@ export default function Header() {
             <Highlight ref={highlightRef}></Highlight>
 
             <NavItem2>
-              <NavLink className={() => getActiveClassName()} tag={Link} to="/">
+              <NavLink
+                className="nav-tab"
+                id="home"
+                onClick={() => setActiveTab("home")}
+                tag={Link}
+                to="/"
+              >
                 Home
               </NavLink>
             </NavItem2>
             <NavItem2>
               <NavLink
-                className={() => getActiveClassName()}
+                className="nav-tab"
+                id="about"
+                onClick={() => setActiveTab("about")}
                 tag={Link}
                 to="/about"
               >
@@ -91,7 +109,9 @@ export default function Header() {
             </NavItem2>
             <NavItem2>
               <NavLink
-                className={() => getActiveClassName()}
+                className="nav-tab"
+                id="wedding"
+                onClick={() => setActiveTab("wedding")}
                 tag={Link}
                 to="/wedding"
               >
@@ -100,7 +120,9 @@ export default function Header() {
             </NavItem2>
             <NavItem2>
               <NavLink
-                className={() => getActiveClassName()}
+                className="nav-tab"
+                id="portfolio"
+                onClick={() => setActiveTab("portfolio")}
                 tag={Link}
                 to="/portfolio"
               >
@@ -109,7 +131,9 @@ export default function Header() {
             </NavItem2>
             <NavItem2>
               <NavLink
-                className={() => getActiveClassName()}
+                className="nav-tab"
+                id="investments"
+                onClick={() => setActiveTab("investments")}
                 tag={Link}
                 to="/investments"
               >
@@ -118,7 +142,9 @@ export default function Header() {
             </NavItem2>
             <NavItem2>
               <NavLink
-                className={() => getActiveClassName()}
+                className="nav-tab"
+                id="contact"
+                onClick={() => setActiveTab("contact")}
                 tag={Link}
                 to="/contact"
               >

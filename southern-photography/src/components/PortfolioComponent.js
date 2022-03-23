@@ -1,46 +1,84 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
-// import image1 from "../images/group1-1.jpg";
-// function importAll(r) {
-//   return r.keys().map(r);
-// }
-
-// const images = importAll(require.context('../../images/', false, /\.(png|jpe?g|svg)$/));
-// console.log(images)
 
 const Column = styled.div`
-  width: 10vw;
+  width: 18vw;
+  display: inline-flex !important;
 `;
 const Image = styled.img`
-  width: inherit;
+  width: 100%;
 `;
 
 const getImages = async () => {
   try {
     const response = await fetch("http://localhost:3001/images/");
-    let files = await response.text();
-    // console.log(files);
+    let files = await response.json();
+    console.log(files);
     return files;
   } catch (err) {
     console.error(err);
   }
 };
 
+const getImage = async (imageName) => {
+  try {
+    const response = await fetch(`http://localhost:3001/images/${imageName}`);
+    const blob = await response.blob();
+    return URL.createObjectURL(blob);
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+const getImagesColumn = (images, position) => {
+  return (
+    <Column className="d-flex flex-column">
+      {images
+        ?.slice(
+          (images.length / 5) * position,
+          (images.length / 5) * (position + 1)
+        )
+        .map((image, i) => (
+          <div>
+            <Image src={image} key={i} alt="test" />
+          </div>
+        ))}
+    </Column>
+  );
+};
+
 export default function Portfolio() {
   const [images, setImages] = useState(null);
+  const [err, setErr] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:3001/images/group9-71.jpg")
-      .then((response) => {
-        console.log(response);
-        return response.blob();
-      })
-      .then((blob) => {
-        console.log(blob);
-        const srcImage = URL.createObjectURL(blob);
-        setImages(srcImage);
-      });
+    let imagesArr = [];
+    (async () => {
+      try {
+        const imageNames = await getImages();
+        console.log(imageNames);
+        imageNames.forEach(async (imageName) => {
+          const img = await getImage(imageName);
+          imagesArr.push(img);
+          if (imagesArr.length === imageNames.length) {
+            console.log(imagesArr);
+            setImages(imagesArr);
+          }
+        });
+      } catch (err) {
+        console.log("Failed to fetch images");
+        setErr("Failed to fetch images");
+      }
+    })();
   }, []);
-  return <div></div>;
+  return (
+    <div className="container">
+      {err && <p>{err}</p>}
+      {getImagesColumn(images, 0)}
+      {getImagesColumn(images, 1)}
+      {getImagesColumn(images, 2)}
+      {getImagesColumn(images, 3)}
+      {getImagesColumn(images, 4)}
+    </div>
+  );
 }

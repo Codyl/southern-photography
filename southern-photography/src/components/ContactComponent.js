@@ -49,7 +49,7 @@ export default function Contact() {
             Get in touch!
           </h2>
           <h3 className="text-center">-- We cant wait to hear from you! --</h3>
-          <Form method="POST" action="https://formspree.io/f/xoqpbeaw">
+          <Form method="POST" action="https://formspree.io/f/mwkyqyaj">
             <input
               type="text"
               className="formControl smallInput"
