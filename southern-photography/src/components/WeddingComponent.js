@@ -78,7 +78,7 @@ const ServiceItemContainer = ({ src, service }) => {
       >
         <ServiceItemText>{service.name.toUpperCase()}</ServiceItemText>
       </div>
-      <p>
+      <p style={{ fontSize: "1.5em", marginTop: "-40px" }}>
         ${service.price} | {service.photographers} Photographer(s) |{" "}
         {service.sessionLength} hours
       </p>

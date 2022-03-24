@@ -20,9 +20,7 @@ const NavItem2 = styled(NavItem)`
   padding: 0 auto;
   margin: 0 0 0 0;
 `;
-const Navbar2 = styled(Navbar)`
-  height: 10vh;
-`;
+const Navbar2 = styled(Navbar)``;
 const Highlight = styled.span`
   background: red;
   transition: all 0.2s;
