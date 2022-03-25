@@ -20,7 +20,11 @@ const NavItem2 = styled(NavItem)`
   padding: 0 auto;
   margin: 0 0 0 0;
 `;
-const Navbar2 = styled(Navbar)``;
+const Navbar2 = styled(Navbar)`
+  position: fixed;
+  width: 100vw;
+  z-index: 3;
+`;
 const Highlight = styled.span`
   background: red;
   transition: all 0.2s;
@@ -67,8 +71,8 @@ export default function Header() {
 
   return (
     <div>
-      <Navbar2 color="light" expand="md" light>
-        <NavbarBrand href="#">
+      <Navbar2 onBlur={() => setOpen(false)} color="light" expand="md" light>
+        <NavbarBrand href="/">
           <Image src={logo} />
         </NavbarBrand>
         <NavbarToggler

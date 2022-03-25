@@ -12,7 +12,7 @@ const ServiceRow = styled.div`
   margin: 40px 0;
 `;
 
-export default function Wedding() {
+export default function Wedding({ setService }) {
   return (
     <>
       {/* <LargeImage /> */}
@@ -26,7 +26,11 @@ export default function Wedding() {
       <div className="divider"></div>
       <ServiceRow>
         {services.map((service) => (
-          <ServiceImageButton key={service.name} service={service} />
+          <ServiceImageButton
+            key={service.name}
+            service={service}
+            setService={setService}
+          />
         ))}
       </ServiceRow>
     </>

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./App.css";
 import Header from "./components/HeaderComponent";
 import Home from "./components/HomeComponent";
@@ -7,8 +8,10 @@ import Contact from "./components/ContactComponent";
 import Investments from "./components/InvestmentsComponent";
 import Wedding from "./components/WeddingComponent";
 import Portfolio from "./components/PortfolioComponent";
+import ServicePage from "./components/ServicePage";
 
 function App() {
+  const [service, setService] = useState("");
   return (
     <BrowserRouter>
       <Header />
@@ -19,9 +22,21 @@ function App() {
           <Route exact path="/" element={<Home />} />
           <Route exact path="/about" element={<About />} />
           <Route exact path="/contact" element={<Contact />} />
-          <Route exact path="/investments" element={<Investments />} />
-          <Route exact path="/wedding" element={<Wedding />} />
+          <Route
+            exact
+            path="/investments"
+            element={<Investments setService={setService} />}
+          />
+          <Route
+            exact
+            path="/wedding"
+            element={<Wedding setService={setService} />}
+          />
           <Route exact path="/portfolio" element={<Portfolio />} />
+          <Route
+            path="/services/:id"
+            element={<ServicePage service={service} />}
+          />
         </Routes>
       </div>
     </BrowserRouter>

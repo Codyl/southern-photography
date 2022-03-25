@@ -5,7 +5,7 @@
   --secondary: #443730;
   --trinary: #fff;
 }
-a {
+.nav-link {
   font-family: "Charmonman", cursive !important;
   font-size: 2em;
   font-weight: 700;

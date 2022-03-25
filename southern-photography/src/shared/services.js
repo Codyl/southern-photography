@@ -8,12 +8,13 @@ import boudoir from "../images/boudoir.jpg";
 import couples from "../images/couples.jpg";
 import family from "../images/family.jpg";
 import maternity from "../images/maternity.jpg";
+import bridal from "../images/maternity.jpg";
+import smallCeremony from "../images/maternity.jpg";
 
 const investmentServices = [
   {
     name: "Couples",
     price: 1000,
-    location: "local",
     photographers: 1,
     sessionLength: 2,
     image: couples,
@@ -21,7 +22,6 @@ const investmentServices = [
   {
     name: "Family",
     price: 1000,
-    location: "local",
     photographers: 1,
     sessionLength: 2,
     image: family,
@@ -29,7 +29,6 @@ const investmentServices = [
   {
     name: "Maternity",
     price: 1000,
-    location: "local",
     photographers: 1,
     sessionLength: 2,
     image: maternity,
@@ -37,15 +36,13 @@ const investmentServices = [
   {
     name: "Birthday",
     price: 1000,
-    location: "local",
     photographers: 1,
     sessionLength: 2,
     image: birthday,
   },
   {
-    name: "Graduation",
+    name: "Graduation/senior",
     price: 1000,
-    location: "local",
     photographers: 1,
     sessionLength: 2,
     image: graduation,
@@ -53,7 +50,6 @@ const investmentServices = [
   {
     name: "Bodouir",
     price: 1000,
-    location: "local",
     photographers: 1,
     sessionLength: 2,
     image: boudoir,
@@ -62,36 +58,66 @@ const investmentServices = [
 
 const weddingServices = [
   {
+    name: "small ceremony",
+    desc: "Wedding Under 50 guests",
+    price: 1400,
+    numImages: "50-100",
+    photographers: 1,
+    sessionLength: 3,
+    image: smallCeremony,
+  },
+  {
     name: "elopement",
-    price: 1000,
-    location: "local",
+    desc: "Bride & Groom",
+    price: 900,
+    numImages: "40-80",
     photographers: 1,
     sessionLength: 2,
     image: elopement,
   },
   {
     name: "engagement",
-    price: 1000,
-    location: "local",
+    desc: "",
+    price: 300,
+    numImages: "20-50",
     photographers: 1,
-    sessionLength: 2,
+    sessionLength: 1,
     image: engagement,
   },
   {
-    name: "half-day",
+    name: "bridal",
+    desc: "",
     price: 1000,
-    location: "local",
+    numImages: "25-50",
     photographers: 1,
-    sessionLength: 2,
+    sessionLength: 1 - 2,
+    image: bridal,
+  },
+  {
+    name: "half-day",
+    desc: "",
+    price: 2000,
+    numImages: "125-150",
+    photographers: 1,
+    sessionLength: 6,
     image: halfDay,
   },
   {
     name: "whole-day",
-    price: 1000,
-    location: "local",
+    desc: "",
+    price: 2800,
+    numImages: "150-200",
+    photographers: 1,
+    sessionLength: 8,
+    image: wholeDay,
+  },
+  {
+    name: "Bodouir",
+    price: 400,
+    numImages: "25-50",
     photographers: 1,
     sessionLength: 2,
-    image: wholeDay,
+    image: boudoir,
   },
 ];
 

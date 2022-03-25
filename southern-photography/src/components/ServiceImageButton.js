@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const serviceItemBoxSize = 250;
 
@@ -16,9 +17,9 @@ const ServiceItemText = styled.p`
   padding: 10px;
 `;
 
-const ServiceImageButton = ({ src, service }) => {
+const ServiceImageButton = ({ service, setService }) => {
   return (
-    <div>
+    <Link onClick={() => setService(service)} to={`/services/${service.name}`}>
       <ServiceItem src={service.image} />
       <div
         style={{
@@ -32,11 +33,7 @@ const ServiceImageButton = ({ src, service }) => {
       >
         <ServiceItemText>{service.name.toUpperCase()}</ServiceItemText>
       </div>
-      <p style={{ fontSize: "1.5em", marginTop: "-40px" }}>
-        ${service.price} | {service.photographers} Photographer(s) |{" "}
-        {service.sessionLength} hours
-      </p>
-    </div>
+    </Link>
   );
 };
 export default ServiceImageButton;

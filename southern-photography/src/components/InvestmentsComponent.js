@@ -12,7 +12,7 @@ const ServiceRow = styled.div`
   margin: 40px 0;
 `;
 
-export default function Investments() {
+export default function Investments({ setService }) {
   useEffect(() => {
     fetch("http://localhost:3001/images/").then((response) => {
       console.log(response);
@@ -37,7 +37,11 @@ export default function Investments() {
       </ServiceRow>
       <ServiceRow>
         {services.slice(3, 6).map((service) => (
-          <ServiceImageButton key={service.name} service={service} />
+          <ServiceImageButton
+            key={service.name}
+            service={service}
+            setService={setService}
+          />
         ))}
       </ServiceRow>
     </>
