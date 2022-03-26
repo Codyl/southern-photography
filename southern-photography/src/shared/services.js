@@ -8,47 +8,53 @@ import boudoir from "../images/boudoir.jpg";
 import couples from "../images/couples.jpg";
 import family from "../images/family.jpg";
 import maternity from "../images/maternity.jpg";
-import bridal from "../images/maternity.jpg";
-import smallCeremony from "../images/maternity.jpg";
+import bridal from "../images/bridal.jpg";
+import smallCeremony from "../images/small-ceremony.jpg";
 
 const investmentServices = [
   {
-    name: "Couples",
+    type: "investment",
+    name: "couples",
     price: 1000,
     photographers: 1,
     sessionLength: 2,
     image: couples,
   },
   {
-    name: "Family",
+    type: "investment",
+    name: "family",
     price: 1000,
     photographers: 1,
     sessionLength: 2,
     image: family,
   },
   {
-    name: "Maternity",
+    type: "investment",
+    name: "maternity",
     price: 1000,
     photographers: 1,
     sessionLength: 2,
     image: maternity,
   },
   {
-    name: "Birthday",
+    type: "investment",
+    name: "birthday",
     price: 1000,
     photographers: 1,
     sessionLength: 2,
     image: birthday,
   },
   {
-    name: "Graduation/senior",
+    type: "investment",
+    name: "senior",
     price: 1000,
     photographers: 1,
     sessionLength: 2,
     image: graduation,
   },
   {
-    name: "Bodouir",
+    type: "investment",
+    name: "bodouir",
     price: 1000,
     photographers: 1,
     sessionLength: 2,
@@ -58,6 +64,7 @@ const investmentServices = [
 
 const weddingServices = [
   {
+    type: "wedding",
     name: "small ceremony",
     desc: "Wedding Under 50 guests",
     price: 1400,
@@ -67,6 +74,7 @@ const weddingServices = [
     image: smallCeremony,
   },
   {
+    type: "wedding",
     name: "elopement",
     desc: "Bride & Groom",
     price: 900,
@@ -76,6 +84,7 @@ const weddingServices = [
     image: elopement,
   },
   {
+    type: "wedding",
     name: "engagement",
     desc: "",
     price: 300,
@@ -85,6 +94,7 @@ const weddingServices = [
     image: engagement,
   },
   {
+    type: "wedding",
     name: "bridal",
     desc: "",
     price: 1000,
@@ -94,6 +104,16 @@ const weddingServices = [
     image: bridal,
   },
   {
+    type: "wedding",
+    name: "bodouir",
+    price: 400,
+    numImages: "25-50",
+    photographers: 1,
+    sessionLength: 2,
+    image: boudoir,
+  },
+  {
+    type: "wedding",
     name: "half-day",
     desc: "",
     price: 2000,
@@ -103,6 +123,7 @@ const weddingServices = [
     image: halfDay,
   },
   {
+    type: "wedding",
     name: "whole-day",
     desc: "",
     price: 2800,
@@ -110,14 +131,6 @@ const weddingServices = [
     photographers: 1,
     sessionLength: 8,
     image: wholeDay,
-  },
-  {
-    name: "Bodouir",
-    price: 400,
-    numImages: "25-50",
-    photographers: 1,
-    sessionLength: 2,
-    image: boudoir,
   },
 ];
 

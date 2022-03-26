@@ -17,13 +17,13 @@ const directoryPath = path.join(__dirname, "public/portfolioImages");
 console.log(directoryPath);
 
 //passsing directoryPath and callback function
-app.get("/images", (req, res) => {
+app.get("/image-group/:gid", (req, res) => {
   console.log("reading all images", directoryPath);
   fs.readdir(directoryPath, function (err, files) {
     if (err) {
       return console.log("Unable to scan directory: " + err);
     }
-    res.send(files);
+    res.send(files.filter((file) => file.includes(req.params.gid)));
   });
 });
 

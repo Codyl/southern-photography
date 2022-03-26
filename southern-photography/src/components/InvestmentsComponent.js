@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import ServiceImageButton from "./ServiceImageButton";
 import { investmentServices as services } from "../shared/services";
+import { CSSTransition } from "react-transition-group";
 
 const ServiceRow = styled.div`
   width: 100vw;
@@ -13,12 +14,6 @@ const ServiceRow = styled.div`
 `;
 
 export default function Investments({ setService }) {
-  useEffect(() => {
-    fetch("http://localhost:3001/images/").then((response) => {
-      console.log(response);
-    });
-  });
-
   return (
     <>
       {/* <LargeImage />
@@ -30,9 +25,16 @@ export default function Investments({ setService }) {
         Investments
       </h1>
       <div className="divider"></div>
+      <CSSTransition in={true} timeout={5000} classNames="my-node">
+        <p>test</p>
+      </CSSTransition>
       <ServiceRow>
         {services.slice(0, 3).map((service) => (
-          <ServiceImageButton key={service.name} service={service} />
+          <ServiceImageButton
+            key={service.name}
+            service={service}
+            setService={setService}
+          />
         ))}
       </ServiceRow>
       <ServiceRow>
