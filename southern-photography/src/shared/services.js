@@ -1,0 +1,137 @@
+import elopement from "../images/elopement.jpg";
+import engagement from "../images/engagement.jpg";
+import halfDay from "../images/half-day.jpg";
+import wholeDay from "../images/full-day.jpg";
+import graduation from "../images/graduation.jpg";
+import birthday from "../images/birthday.jpg";
+import boudoir from "../images/boudoir.jpg";
+import couples from "../images/couples.jpg";
+import family from "../images/family.jpg";
+import maternity from "../images/maternity.jpg";
+import bridal from "../images/bridal.jpg";
+import smallCeremony from "../images/small-ceremony.jpg";
+
+const investmentServices = [
+  {
+    type: "investment",
+    name: "couples",
+    price: 1000,
+    photographers: 1,
+    sessionLength: 2,
+    image: couples,
+  },
+  {
+    type: "investment",
+    name: "family",
+    price: 1000,
+    photographers: 1,
+    sessionLength: 2,
+    image: family,
+  },
+  {
+    type: "investment",
+    name: "maternity",
+    price: 1000,
+    photographers: 1,
+    sessionLength: 2,
+    image: maternity,
+  },
+  {
+    type: "investment",
+    name: "birthday",
+    price: 1000,
+    photographers: 1,
+    sessionLength: 2,
+    image: birthday,
+  },
+  {
+    type: "investment",
+    name: "senior",
+    price: 1000,
+    photographers: 1,
+    sessionLength: 2,
+    image: graduation,
+  },
+  {
+    type: "investment",
+    name: "bodouir",
+    price: 1000,
+    photographers: 1,
+    sessionLength: 2,
+    image: boudoir,
+  },
+];
+
+const weddingServices = [
+  {
+    type: "wedding",
+    name: "small ceremony",
+    desc: "Wedding Under 50 guests",
+    price: 1400,
+    numImages: "50-100",
+    photographers: 1,
+    sessionLength: 3,
+    image: smallCeremony,
+  },
+  {
+    type: "wedding",
+    name: "elopement",
+    desc: "Bride & Groom",
+    price: 900,
+    numImages: "40-80",
+    photographers: 1,
+    sessionLength: 2,
+    image: elopement,
+  },
+  {
+    type: "wedding",
+    name: "engagement",
+    desc: "",
+    price: 300,
+    numImages: "20-50",
+    photographers: 1,
+    sessionLength: 1,
+    image: engagement,
+  },
+  {
+    type: "wedding",
+    name: "bridal",
+    desc: "",
+    price: 1000,
+    numImages: "25-50",
+    photographers: 1,
+    sessionLength: 1 - 2,
+    image: bridal,
+  },
+  {
+    type: "wedding",
+    name: "bodouir",
+    price: 400,
+    numImages: "25-50",
+    photographers: 1,
+    sessionLength: 2,
+    image: boudoir,
+  },
+  {
+    type: "wedding",
+    name: "half-day",
+    desc: "",
+    price: 2000,
+    numImages: "125-150",
+    photographers: 1,
+    sessionLength: 6,
+    image: halfDay,
+  },
+  {
+    type: "wedding",
+    name: "whole-day",
+    desc: "",
+    price: 2800,
+    numImages: "150-200",
+    photographers: 1,
+    sessionLength: 8,
+    image: wholeDay,
+  },
+];
+
+export { weddingServices, investmentServices };

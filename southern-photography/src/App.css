@@ -5,7 +5,7 @@
   --secondary: #443730;
   --trinary: #fff;
 }
-a {
+.nav-link {
   font-family: "Charmonman", cursive !important;
   font-size: 2em;
   font-weight: 700;
@@ -26,13 +26,35 @@ body {
   border-bottom-style: groove;
   margin: 5px;
   width: 40%;
+  font-size: 1.5rem !important;
 }
 input {
   font-size: 2em;
+}
+.selected {
+  font-weight: 900;
 }
 @media only screen and (max-width: 600px) {
   .formControl {
     display: block;
     width: 90%;
   }
+}
+p {
+  font-size: 2em;
+  margin: 10px 30px;
+}
+.my-node-enter {
+  opacity: 0;
+}
+.my-node-enter-active {
+  opacity: 1;
+  transition: opacity 200ms;
+}
+.my-node-exit {
+  opacity: 1;
+}
+.my-node-exit-active {
+  opacity: 0;
+  transition: opacity 200ms;
 }

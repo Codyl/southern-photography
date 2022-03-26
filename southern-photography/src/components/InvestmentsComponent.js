@@ -1,13 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import aboutImage from "../images/group1-0.jpg";
+import ServiceImageButton from "./ServiceImageButton";
+import { investmentServices as services } from "../shared/services";
+import { CSSTransition } from "react-transition-group";
 
-const serviceItemBoxSize = 250;
-
-const ServiceItem = styled.img`
-  width: ${serviceItemBoxSize}px;
-  height: ${serviceItemBoxSize}px;
-`;
 const ServiceRow = styled.div`
   width: 100vw;
   display: flex;
@@ -16,89 +12,8 @@ const ServiceRow = styled.div`
   flex-wrap: wrap;
   margin: 40px 0;
 `;
-const ServiceItemText = styled.p`
-  position: relative;
-  text-align: center;
-  color: black;
-  opacity: 1;
-  font-size: 2em;
-`;
 
-const services = [
-  {
-    name: "Couples",
-    price: 1000,
-    location: "local",
-    photographers: 1,
-    sessionLength: 2,
-    image: aboutImage,
-  },
-  {
-    name: "Family",
-    price: 1000,
-    location: "local",
-    photographers: 1,
-    sessionLength: 2,
-    image: aboutImage,
-  },
-  {
-    name: "Maternity",
-    price: 1000,
-    location: "local",
-    photographers: 1,
-    sessionLength: 2,
-    image: aboutImage,
-  },
-  {
-    name: "Birthday",
-    price: 1000,
-    location: "local",
-    photographers: 1,
-    sessionLength: 2,
-    image: aboutImage,
-  },
-  {
-    name: "Graduation",
-    price: 1000,
-    location: "local",
-    photographers: 1,
-    sessionLength: 2,
-    image: aboutImage,
-  },
-  {
-    name: "Bodouir",
-    price: 1000,
-    location: "local",
-    photographers: 1,
-    sessionLength: 2,
-    image: aboutImage,
-  },
-];
-
-const ServiceItemContainer = ({ src, service }) => {
-  return (
-    <div>
-      <ServiceItem src={service.image} />
-      <div
-        style={{
-          width: serviceItemBoxSize,
-          height: "50px",
-          backgroundColor: "gray",
-          opacity: "1",
-          position: "relative",
-          bottom: "125px",
-        }}
-      >
-        <ServiceItemText>{service.name}</ServiceItemText>
-      </div>
-      <p>
-        {service.name} | ${service.price} | {service.photographers}{" "}
-        Photographer(s) | {service.sessionLength} hours
-      </p>
-    </div>
-  );
-};
-export default function Investments() {
+export default function Investments({ setService }) {
   return (
     <>
       {/* <LargeImage />
@@ -110,14 +25,25 @@ export default function Investments() {
         Investments
       </h1>
       <div className="divider"></div>
+      <CSSTransition in={true} timeout={5000} classNames="my-node">
+        <p>test</p>
+      </CSSTransition>
       <ServiceRow>
         {services.slice(0, 3).map((service) => (
-          <ServiceItemContainer key={service.name} service={service} />
+          <ServiceImageButton
+            key={service.name}
+            service={service}
+            setService={setService}
+          />
         ))}
       </ServiceRow>
       <ServiceRow>
         {services.slice(3, 6).map((service) => (
-          <ServiceItemContainer key={service.name} service={service} />
+          <ServiceImageButton
+            key={service.name}
+            service={service}
+            setService={setService}
+          />
         ))}
       </ServiceRow>
     </>
