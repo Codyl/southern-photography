@@ -1,15 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Arya&family=Charmonman:wght@400;700&family=Croissant+One&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Arya&family=Charmonman:wght@400;700&family=Croissant+One&display=swap");
 :root {
   font-size: 10px;
-  --primary: #80A95B;
+  --primary: #80a95b;
   --secondary: #443730;
-  --trinary: #FFF;
+  --trinary: #fff;
 }
-.App {
-  
-}
-a {
-  font-family: 'Charmonman', cursive !important;
+.nav-link {
+  font-family: "Charmonman", cursive !important;
   font-size: 2em;
   font-weight: 700;
 }
@@ -29,6 +26,13 @@ body {
   border-bottom-style: groove;
   margin: 5px;
   width: 40%;
+  font-size: 1.5rem !important;
+}
+input {
+  font-size: 2em;
+}
+.selected {
+  font-weight: 900;
 }
 @media only screen and (max-width: 600px) {
   .formControl {
