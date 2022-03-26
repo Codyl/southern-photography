@@ -2,6 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import { Form } from "reactstrap";
 import contactImage from "../images/letter.jpg";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { investmentServices, weddingServices } from "../shared/services";
+import {
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+} from "reactstrap";
 
 const ContactForm = styled.div`
   padding: 30px;
@@ -26,6 +34,11 @@ const ContactImage = styled.img`
 `;
 
 export default function Contact() {
+  const [dropdownOpen, setDropdownOpen] = React.useState(false);
+  const [dropdownValue, setDropdownValue] = React.useState("Select a session");
+
+  const toggle = () => setDropdownOpen((prevState) => !prevState);
+
   return (
     <div className="d-flex justify-content-around">
       <ContactImage
@@ -35,11 +48,9 @@ export default function Contact() {
       />
       <div>
         <ContactParagraph>
-          I'm a paragraph. Click here to add your own text and edit me. It's
-          easy. Just click “Edit Text” or double click me to add your own
-          content and make changes to the font. Feel free to drag and drop me
-          anywhere you like on your page. I'm a great place for you to tell a
-          story and let your users know a little more about you.
+          25% Deposit Required at Booking Payment Plans Available Inquiries for
+          destination weddings, please email me. Additional fees will be applied
+          (Airfare, Lodging, & Transportation)
         </ContactParagraph>
         <ContactForm className="container">
           <h2
@@ -52,25 +63,78 @@ export default function Contact() {
           <Form method="POST" action="https://formspree.io/f/mwkyqyaj">
             <input
               type="text"
-              className="formControl smallInput"
-              name="name"
-              id="name"
-              placeholder="Name"
+              className="formControl"
+              name="firstName"
+              id="firstName"
+              placeholder="First name"
+              required
             />
             <input
               type="text"
-              className="formControl smallInput"
+              className="formControl"
+              name="lastName"
+              id="lastName"
+              placeholder="Last name"
+              required
+            />
+            <input
+              type="text"
+              className="formControl"
               name="_replyto"
               id="email"
-              placeholder="email"
+              placeholder="Email"
+              required
             />
+            <input
+              type="number"
+              className="formControl"
+              name="phoneNumber"
+              id="phoneNumber"
+              placeholder="Phone number"
+              required
+            />
+            <input
+              type="hidden"
+              name="sessionType"
+              id="sessionType"
+              value={dropdownValue !== "Select a session" ? dropdownOpen : ""}
+              required
+            />
+            <Dropdown
+              style={{ display: "inline" }}
+              isOpen={dropdownOpen}
+              toggle={toggle}
+            >
+              <DropdownToggle className="formControl" caret>
+                {dropdownValue}
+              </DropdownToggle>
+              <DropdownMenu className="formControl">
+                {investmentServices.map(({ name }) => (
+                  <DropdownItem
+                    key={name}
+                    onClick={() => setDropdownValue(name)}
+                  >
+                    {name}
+                  </DropdownItem>
+                ))}
+                {weddingServices.map(({ name }) => (
+                  <DropdownItem
+                    key={name}
+                    onClick={() => setDropdownValue(name)}
+                  >
+                    {name}
+                  </DropdownItem>
+                ))}
+              </DropdownMenu>
+            </Dropdown>
+            <input type="date" className="formControl" name="date" id="date" />
             <textarea
               className="formControl form-control"
-              name=""
-              id=""
+              name="vision"
+              id="vision"
               cols="30"
               rows="10"
-              placeholder="Tell me a bit about what you are planning!"
+              placeholder="What is your vision?"
             ></textarea>
             <ContactButton>Send Message</ContactButton>
           </Form>
