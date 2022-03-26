@@ -19,7 +19,11 @@ const ServiceItemText = styled.p`
 
 const ServiceImageButton = ({ service, setService }) => {
   return (
-    <Link onClick={() => setService(service)} to={`/services/${service.name}`}>
+    <Link
+      style={{ textDecoration: "none" }}
+      onClick={() => setService(service)}
+      to={`/services/${service.name}`}
+    >
       <ServiceItem src={service.image} />
       <div
         style={{

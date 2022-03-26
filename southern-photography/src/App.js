@@ -8,13 +8,15 @@ import Contact from "./components/ContactComponent";
 import Investments from "./components/InvestmentsComponent";
 import Wedding from "./components/WeddingComponent";
 import Portfolio from "./components/PortfolioComponent";
-import ServicePage from "./components/ServicePage";
+import Service from "./components/ServicePage";
+import Booking from "./components/BookingComponent";
 
 function App() {
   const [service, setService] = useState("");
   return (
     <BrowserRouter>
       <Header />
+      <div style={{ height: "10vh" }}></div>
       {/* <SocialMedia/> */}
       <div className="App">
         {/* <div style={{height: '40px'}}></div> */}
@@ -33,10 +35,8 @@ function App() {
             element={<Wedding setService={setService} />}
           />
           <Route exact path="/portfolio" element={<Portfolio />} />
-          <Route
-            path="/services/:id"
-            element={<ServicePage service={service} />}
-          />
+          <Route exact path="/book-now" element={<Booking />} />
+          <Route path="/services/:id" element={<Service service={service} />} />
         </Routes>
       </div>
     </BrowserRouter>
