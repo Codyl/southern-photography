@@ -25,9 +25,6 @@ export default function Investments({ setService }) {
         Investments
       </h1>
       <div className="divider"></div>
-      <CSSTransition in={true} timeout={5000} classNames="my-node">
-        <p>test</p>
-      </CSSTransition>
       <ServiceRow>
         {services.slice(0, 3).map((service) => (
           <ServiceImageButton
