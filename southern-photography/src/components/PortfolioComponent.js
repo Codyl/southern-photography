@@ -62,23 +62,6 @@ const getImage = async (imageName) => {
   }
 };
 
-const getImagesColumn = (images, position) => {
-  return (
-    <Column className="d-flex flex-column">
-      {images
-        ?.slice(
-          (images.length / 5) * position,
-          (images.length / 5) * (position + 1)
-        )
-        .map((image, i) => (
-          <div>
-            <Image src={image} key={i} alt="test" />
-          </div>
-        ))}
-    </Column>
-  );
-};
-
 export default function Portfolio() {
   const [images, setImages] = useState(null);
   const [group, setGroup] = useState("senior");
@@ -86,18 +69,21 @@ export default function Portfolio() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggle = () => setDropdownOpen((prevState) => !prevState);
+  useEffect(() => {
+    document.getElementById("senior").classList.add("active");
+  }, []);
 
   useEffect(() => {
     let imagesArr = [];
     (async () => {
       try {
         const imageNames = await getImages(group);
-        console.log(imageNames);
+        // console.log(imageNames);
         imageNames.forEach(async (imageName) => {
           const img = await getImage(imageName);
           imagesArr.push(img);
           if (imagesArr.length === imageNames.length) {
-            console.log(imagesArr);
+            // console.log(imagesArr);
             setImages(imagesArr);
           }
         });
@@ -107,6 +93,14 @@ export default function Portfolio() {
       }
     })();
   }, [group]);
+
+  const setStyle = (e) => {
+    document.querySelectorAll(".service-btn").forEach((btn) => {
+      btn.classList.remove("active");
+    });
+    e.target.classList.add("active");
+  };
+
   return (
     <>
       {err && <p>{err}</p>}
@@ -123,9 +117,13 @@ export default function Portfolio() {
                   fontWeight: 400,
                   fontSize: "2rem",
                   cursor: "pointer",
+                  boxSizing: "content-box",
                 }}
-                onClick={() => {
+                className="service-btn"
+                id={service.name}
+                onClick={(e) => {
                   setGroup(service.name);
+                  setStyle(e);
                 }}
               >
                 {service.name}
