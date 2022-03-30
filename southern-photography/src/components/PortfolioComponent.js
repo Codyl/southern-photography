@@ -11,7 +11,7 @@ const Image = styled.img`
 
 const getImages = async () => {
   try {
-    const response = await fetch("http://localhost:3001/images/");
+    const response = await fetch("http://localhost:3001/images/group1");
     let files = await response.json();
     console.log(files);
     return files;
@@ -40,7 +40,7 @@ const getImagesColumn = (images, position) => {
         )
         .map((image, i) => (
           <div>
-            <Image src={image} key={i} alt="test" />
+            <Image src={image} key={image + position + "-" + i} alt="test" />
           </div>
         ))}
     </Column>
@@ -52,19 +52,10 @@ export default function Portfolio() {
   const [err, setErr] = useState(null);
 
   useEffect(() => {
-    let imagesArr = [];
     (async () => {
       try {
         const imageNames = await getImages();
-        console.log(imageNames);
-        imageNames.forEach(async (imageName) => {
-          const img = await getImage(imageName);
-          imagesArr.push(img);
-          if (imagesArr.length === imageNames.length) {
-            console.log(imagesArr);
-            setImages(imagesArr);
-          }
-        });
+        setImages(imageNames);
       } catch (err) {
         console.log("Failed to fetch images");
         setErr("Failed to fetch images");
