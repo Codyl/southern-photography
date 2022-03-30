@@ -13,8 +13,12 @@ const getImages = async () => {
   try {
     const response = await fetch("http://localhost:3001/images/group1");
     let files = await response.json();
+    console.log(typeof files[0]);
+    const promises = files.map(async (file) => URL.createObjectURL(file));
+    const result = await Promise.all(promises);
+    console.log(result);
     console.log(files);
-    return files;
+    return result;
   } catch (err) {
     console.error(err);
   }
@@ -22,7 +26,7 @@ const getImages = async () => {
 
 const getImage = async (imageName) => {
   try {
-    const response = await fetch(`http://localhost:3001/images/${imageName}`);
+    const response = await fetch(`http://localhost:3001/image/${imageName}`);
     const blob = await response.blob();
     return URL.createObjectURL(blob);
   } catch (e) {
@@ -54,7 +58,7 @@ export default function Portfolio() {
   useEffect(() => {
     (async () => {
       try {
-        const imageNames = await getImages();
+        const imageNames = await getImage("group1-0.jpg");
         setImages(imageNames);
       } catch (err) {
         console.log("Failed to fetch images");
@@ -65,11 +69,12 @@ export default function Portfolio() {
   return (
     <div className="container">
       {err && <p>{err}</p>}
-      {getImagesColumn(images, 0)}
+      <img src={images} style={{ marginTop: 200 }} alt="test" />
+      {/* {getImagesColumn(images, 0)}
       {getImagesColumn(images, 1)}
       {getImagesColumn(images, 2)}
       {getImagesColumn(images, 3)}
-      {getImagesColumn(images, 4)}
+      {getImagesColumn(images, 4)} */}
     </div>
   );
 }

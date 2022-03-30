@@ -10,11 +10,6 @@ AWS.config.update({
 
 const s3 = new AWS.S3();
 
-function base64_encode(file) {
-  // read binary data
-  var bitmap = fs.readFileSync(file, { encoding: "base64" });
-}
-
 export const getImages = async (groupPrefix) => {
   try {
     const response = await s3
@@ -44,5 +39,8 @@ export const getImage = async (imageName) => {
     .promise();
   return data.Body.toString("utf-8");
 };
-// const testImage = await getImages("group1");
+// const testImages = await getImages("group1");
+// console.log(testImages);
+
+// const testImage = await getImage("group1-0.jpg");
 // console.log(testImage);
