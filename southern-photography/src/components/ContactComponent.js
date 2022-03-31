@@ -48,9 +48,11 @@ export default function Contact() {
       />
       <div>
         <ContactParagraph>
-          25% Deposit Required at Booking Payment Plans Available Inquiries for
-          destination weddings, please email me. Additional fees will be applied
-          (Airfare, Lodging, & Transportation)
+          25% Deposit Required at Booking
+          <br /> Payment Plans Available
+          <br /> Inquiries for destination weddings, please email me.
+          <br /> Additional fees will be applied (Airfare, Lodging, &
+          Transportation)
         </ContactParagraph>
         <ContactForm className="container">
           <h2
@@ -97,7 +99,7 @@ export default function Contact() {
               type="hidden"
               name="sessionType"
               id="sessionType"
-              value={dropdownValue !== "Select a session" ? dropdownOpen : ""}
+              value={dropdownValue !== "Select a session" ? dropdownValue : ""}
               required
             />
             <Dropdown

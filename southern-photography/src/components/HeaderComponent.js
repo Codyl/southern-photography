@@ -35,15 +35,6 @@ const Highlight = styled.span`
   z-index: -1;
 `;
 
-function highlightLink(e) {
-  // console.log(this.getBoundingClientRect(), e);
-  const linkCoords = this.getBoundingClientRect();
-  e.target.style.width = `${linkCoords.width}px`;
-  e.target.style.left = linkCoords.x;
-  e.target.style.top = linkCoords.y;
-  console.log(e.target.style.x);
-}
-
 export default function Header() {
   let path = window.location.pathname;
   path = path.replace("/", "");
@@ -52,20 +43,20 @@ export default function Header() {
   const highlightRef = useRef(null);
 
   useEffect(() => {
-    // const triggers = document.querySelectorAll("a");
-    // triggers.forEach((l) => l.addEventListener("mouseenter", highlightLink));
     setClassForActiveTab();
   }, [activeTab]);
 
   const setClassForActiveTab = () => {
     const navTabs = document.getElementsByClassName("nav-tab");
-    Array.from(navTabs).map((element) => {
+    Array.from(navTabs).forEach((element) => {
       element.classList.remove("active");
     });
 
     const activeTabElement = document.getElementById(activeTab);
     if (!!activeTabElement) {
       activeTabElement.classList.add("active");
+    } else {
+      document.getElementById("home").classList.add("active");
     }
   };
 

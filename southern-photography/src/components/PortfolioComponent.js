@@ -7,19 +7,18 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
+  Spinner as Loading,
 } from "reactstrap";
 
-const Column = styled.div`
-  width: 18vw;
-  display: inline-flex !important;
-`;
 const Image = styled.img`
-  width: 100%;
+  height: 100%;
 `;
 const ImageGallery = styled.div`
-  height: 400px;
-  width: 90%;
   margin: 0 5%;
+  @media screen and (min-width: 461px) {
+    height: 400px;
+    width: 90%;
+  }
 `;
 const ServicesListRect = styled.ul`
   position: relative;
@@ -41,11 +40,11 @@ const GalleryGradient = styled.div`
   position: relative;
   background: linear-gradient(269.36deg, white.45%, rgba(0, 0, 0, 0) 101.59%);
 `;
-const getImages = async (group) => {
+
+const getImages = async (groupName) => {
   try {
-    const response = await fetch(`http://localhost:3001/image-group/${group}`);
+    const response = await fetch(`http://localhost:3001/images/${groupName}`);
     let files = await response.json();
-    // console.log(files);
     return files;
   } catch (err) {
     console.error(err);
@@ -54,9 +53,8 @@ const getImages = async (group) => {
 
 const getImage = async (imageName) => {
   try {
-    const response = await fetch(`http://localhost:3001/images/${imageName}`);
-    const blob = await response.blob();
-    return URL.createObjectURL(blob);
+    const response = await fetch(`http://localhost:3001/image/${imageName}`);
+    return response.text();
   } catch (e) {
     console.log(e);
   }
@@ -70,28 +68,25 @@ export default function Portfolio() {
 
   const toggle = () => setDropdownOpen((prevState) => !prevState);
   useEffect(() => {
-    document.getElementById("senior").classList.add("active");
+    document.getElementById("senior")?.classList.add("active");
   }, []);
 
   useEffect(() => {
-    let imagesArr = [];
+    let isMounted = true;
     (async () => {
       try {
         const imageNames = await getImages(group);
-        // console.log(imageNames);
-        imageNames.forEach(async (imageName) => {
-          const img = await getImage(imageName);
-          imagesArr.push(img);
-          if (imagesArr.length === imageNames.length) {
-            // console.log(imagesArr);
-            setImages(imagesArr);
-          }
-        });
+        if (isMounted) {
+          setImages(imageNames);
+        }
       } catch (err) {
         console.log("Failed to fetch images");
         setErr("Failed to fetch images");
       }
     })();
+    return () => {
+      isMounted = false;
+    };
   }, [group]);
 
   const setStyle = (e) => {
@@ -123,6 +118,7 @@ export default function Portfolio() {
                 id={service.name}
                 onClick={(e) => {
                   setGroup(service.name);
+                  setImages([]);
                   setStyle(e);
                 }}
               >
@@ -142,12 +138,24 @@ export default function Portfolio() {
           </DropdownToggle>
           <DropdownMenu className="formControl">
             {investmentServices.map(({ name }) => (
-              <DropdownItem key={name} onClick={() => setGroup(name)}>
+              <DropdownItem
+                key={name}
+                onClick={() => {
+                  setGroup(name);
+                  setImages([]);
+                }}
+              >
                 {name}
               </DropdownItem>
             ))}
             {weddingServices.map(({ name }) => (
-              <DropdownItem key={name} onClick={() => setGroup(name)}>
+              <DropdownItem
+                key={name}
+                onClick={() => {
+                  setGroup(name);
+                  setImages([]);
+                }}
+              >
                 {name}
               </DropdownItem>
             ))}
@@ -156,26 +164,47 @@ export default function Portfolio() {
       )}
 
       <div>
-        <div>
-          <ImageGallery>
-            <div style={{ display: "flex", overflow: "auto" }}>
-              {images?.map((image, i) => (
-                <img
-                  src={image}
-                  style={{ height: "400px", margin: "0 10px" }}
-                  alt="portfolioImage"
-                  key={i}
-                />
-              ))}
-            </div>
-            <GalleryGradient
-              style={{ left: "100%", marginLeft: "-100px", bottom: "100%" }}
-            />
-            <GalleryGradient
-              style={{ transform: "rotate(180deg)", bottom: "200%" }}
-            />
-          </ImageGallery>
-        </div>
+        <ImageGallery>
+          <div
+            style={{
+              display: "flex",
+              overflow: "auto",
+            }}
+          >
+            {images && Array.isArray(images) && images.length ? (
+              images?.map(
+                (image, i) =>
+                  image && (
+                    <img
+                      src={image}
+                      style={{ height: "400px", margin: "0 10px" }}
+                      alt="portfolioImage"
+                      key={i}
+                    />
+                  )
+              )
+            ) : (
+              <Loading
+                color="dark"
+                type="grow"
+                style={{ width: "5rem", height: "5rem" }}
+                className="mx-auto"
+              />
+            )}
+          </div>
+          {images && Array.isArray(images) && images.length ? (
+            <>
+              <GalleryGradient
+                style={{ left: "100%", marginLeft: "-100px", bottom: "100%" }}
+              />
+              <GalleryGradient
+                style={{ transform: "rotate(180deg)", bottom: "200%" }}
+              />
+            </>
+          ) : (
+            ""
+          )}
+        </ImageGallery>
       </div>
     </>
   );
