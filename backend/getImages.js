@@ -1,5 +1,6 @@
 import express from "express";
 const app = express();
+import "dotenv/config";
 
 //requiring path and fs modules
 import path from "path";
@@ -15,12 +16,13 @@ app.use(express.static("public"));
 
 app.get("/images/:gid", async (req, res) => {
   const images = await getImages(req.params.gid);
+  console.log("images");
   res.send(images);
 });
 
-app.get("/image/:id", (req, res) => {
-  const image = getImage(req.params.id);
+app.get("/image/:id", async (req, res) => {
+  const image = await getImage(req.params.id);
   res.send(image);
 });
 
-app.listen(3001);
+app.listen(process.env.PORT);

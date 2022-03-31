@@ -10,6 +10,12 @@ AWS.config.update({
 
 const s3 = new AWS.S3();
 
+const encode = (data) => {
+  let buf = Buffer.from(data);
+  let base64 = buf.toString("base64");
+  return base64;
+};
+
 export const getImages = async (groupPrefix) => {
   try {
     const response = await s3
@@ -31,13 +37,14 @@ export const getImages = async (groupPrefix) => {
 };
 
 export const getImage = async (imageName) => {
+  //data contains a data stream
   const data = await s3
     .getObject({
       Bucket: process.env.BUCKET_NAME,
       Key: imageName,
     })
     .promise();
-  return data.Body.toString("utf-8");
+  return `data:image:/image/jpeg;base64,${encode(data.Body)}`;
 };
 // const testImages = await getImages("group1");
 // console.log(testImages);
