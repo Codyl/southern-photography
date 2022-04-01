@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 
 const serviceItemBoxSize = 250;
 
-const ServiceItem = styled.img`
+const ServiceItem = styled.div`
   width: ${serviceItemBoxSize}px;
   height: ${serviceItemBoxSize}px;
+  overflow: hidden;
+  border-radius: 25px;
 `;
 
 const ServiceItemText = styled.p`
@@ -16,15 +18,20 @@ const ServiceItemText = styled.p`
   font-size: 2em;
   padding: 10px;
 `;
+const ServiceItemImage = styled.img`
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 25px;
+  position: relative;
+`;
 
-const ServiceImageButton = ({ service, setService }) => {
+const ServiceImageButton = ({ service }) => {
   return (
-    <Link
-      style={{ textDecoration: "none" }}
-      onClick={() => setService(service)}
-      to={`/services/${service.name}`}
-    >
-      <ServiceItem src={service.image} />
+    <Link style={{ textDecoration: "none" }} to={`/services/${service.name}`}>
+      <ServiceItem>
+        <ServiceItemImage className="enlarge" src={service.image} alt="" />
+      </ServiceItem>
       <div
         style={{
           width: serviceItemBoxSize,
