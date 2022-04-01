@@ -23,7 +23,7 @@ const NavItem2 = styled(NavItem)`
 const Navbar2 = styled(Navbar)`
   position: fixed;
   width: 100vw;
-  z-index: 3;
+  z-index: 9;
 `;
 const Highlight = styled.span`
   background: red;
@@ -61,7 +61,7 @@ export default function Header() {
   };
 
   return (
-    <div>
+    <>
       <Navbar2 onBlur={() => setOpen(false)} color="light" expand="md" light>
         <NavbarBrand href="/">
           <Image src={logo} />
@@ -147,6 +147,6 @@ export default function Header() {
           </Nav>
         </Collapse>
       </Navbar2>
-    </div>
+    </>
   );
 }

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import { investmentServices, weddingServices } from "../shared/services";
 import {
   Dropdown,
@@ -31,7 +30,6 @@ const ServicesListRect = styled.ul`
   margin: 20px auto;
   padding: 10px 0;
   border: 1px solid black;
-  overflow: auto;
   row-gap: 20px;
 `;
 const GalleryGradient = styled.div`
@@ -165,12 +163,7 @@ export default function Portfolio() {
 
       <div>
         <ImageGallery>
-          <div
-            style={{
-              display: "flex",
-              overflow: "auto",
-            }}
-          >
+          <div class="scrollbar" id="style-3">
             {images && Array.isArray(images) && images.length ? (
               images?.map(
                 (image, i) =>
@@ -195,10 +188,17 @@ export default function Portfolio() {
           {images && Array.isArray(images) && images.length ? (
             <>
               <GalleryGradient
-                style={{ left: "100%", marginLeft: "-100px", bottom: "100%" }}
+                style={{
+                  left: "100%",
+                  marginLeft: "-100px",
+                  bottom: "calc(100% + 17px)",
+                }}
               />
               <GalleryGradient
-                style={{ transform: "rotate(180deg)", bottom: "200%" }}
+                style={{
+                  transform: "rotate(180deg)",
+                  bottom: "calc(200% + 17px)",
+                }}
               />
             </>
           ) : (

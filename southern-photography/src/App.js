@@ -19,7 +19,6 @@ function App() {
       <div style={{ height: "10vh" }}></div>
       {/* <SocialMedia/> */}
       <div className="App">
-        {/* <div style={{height: '40px'}}></div> */}
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/about" element={<About />} />
