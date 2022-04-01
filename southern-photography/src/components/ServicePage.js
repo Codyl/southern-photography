@@ -1,6 +1,8 @@
+import { useLocation } from "react-router-dom";
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { weddingServices, investmentServices } from "../shared/services";
 const ServiceItem = styled.img`
   width: 80%;
 `;
@@ -23,8 +25,16 @@ const Divider = styled.div`
   background-color: black;
   margin: auto;
 `;
-export default function ServicePage({ service }) {
-  service.name = service.name[0].toUpperCase() + service.name.slice(1);
+export default function ServicePage() {
+  let location = useLocation().pathname.split("/")[2];
+  location = location.replace("%20", " ").toLowerCase();
+  const services = [
+    ...investmentServices,
+    ...weddingServices.filter((service) => service.name !== "bodouir"),
+  ];
+  const service = services.find((service) => {
+    return service.name === location;
+  });
   return (
     <div className="container">
       <div className="d-sm-flex">

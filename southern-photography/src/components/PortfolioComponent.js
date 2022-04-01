@@ -163,7 +163,7 @@ export default function Portfolio() {
 
       <div>
         <ImageGallery>
-          <div class="scrollbar" id="style-3">
+          <div className="scrollbar" id="style-3">
             {images && Array.isArray(images) && images.length ? (
               images?.map(
                 (image, i) =>
