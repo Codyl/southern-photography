@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { Button } from "reactstrap";
+import React from "react";
 import styled from "styled-components";
 import wideImage from "../images/title.jpg";
 import tallImage from "../images/sm-bg.jpg";
@@ -10,17 +9,6 @@ const LargeImage = styled.img`
   max-height: 100vh;
   height: auto;
   z-index: -1;
-`;
-const QuoteBox = styled.div`
-  background-color: lightgrey;
-  width: 120vw;
-  height: 400px;
-  transform: rotate(5deg);
-  position: absolute;
-  top: -60px;
-  left: -10vw;
-  overflow: hidden;
-  z-index: 2;
 `;
 const BookingButton = styled(Link)`
   background-color: white;
@@ -48,8 +36,13 @@ export default function Home() {
         <BookingButton to="/contact">Book Now</BookingButton>
       </div>
       <div style={{ overflow: "hidden", position: "relative", zIndex: 3 }}>
+        <h3
+          className="text-center"
+          style={{ fontSize: "30px", fontFamily: "Croissant One" }}
+        >
+          Reviews
+        </h3>
         <hr />
-        {/* <QuoteBox></QuoteBox> */}
         <Blockquote>
           <p>
             I have known Tosha for 12 years. When she picked up the camera and

@@ -25,6 +25,9 @@ const Divider = styled.div`
   background-color: black;
   margin: auto;
 `;
+const ServiceParagraph = styled.p`
+  font-size: 1.6rem;
+`;
 export default function ServicePage() {
   let location = useLocation().pathname.split("/")[2];
   location = location.replace("%20", " ").toLowerCase();
@@ -55,26 +58,36 @@ export default function ServicePage() {
             {service.desc}
           </h2>
           <h3>{service.name} session details</h3>
-          <p>
+          <ServiceParagraph>
             {service.sessionLength} hour{service.sessionLength > 1 && "s"}
-          </p>
-          <p>${service.price}</p>
-          <p>{service.photographers} photographer</p>
-          <p>Add-on: Second Photographer $100 Per Hour</p>
-          <p>{service.numImages} images expected</p>
+          </ServiceParagraph>
+          <ServiceParagraph>${service.price}</ServiceParagraph>
+          <ServiceParagraph>
+            {service.photographers} photographer
+          </ServiceParagraph>
+          <ServiceParagraph>
+            Add-on: Second Photographer $100 Per Hour
+          </ServiceParagraph>
+          <ServiceParagraph>
+            {service.numImages} images expected
+          </ServiceParagraph>
           <div className="border m-3">
             <h4>Payment details</h4>
-            <p>25% Deposit Required at Booking</p>
-            <p>Payment Plans Available upon request</p>
+            <ServiceParagraph>25% Deposit Required at Booking</ServiceParagraph>
+            <ServiceParagraph>
+              Payment Plans Available upon request
+            </ServiceParagraph>
           </div>
           <div className="border m-3">
             <h4>Travel details</h4>
-            <p>Additional Travel Fee Will Be Applied (Over 20 Miles)</p>
+            <ServiceParagraph>
+              Additional Travel Fee Will Be Applied (Over 20 Miles)
+            </ServiceParagraph>
             {service.type === "wedding" && (
-              <p>
+              <ServiceParagraph>
                 Inquiries for destination weddings, please email me. Additional
                 fees will be applied (Airfare, Lodging, & Transportation)
-              </p>
+              </ServiceParagraph>
             )}
           </div>
           <div className="my-5">

@@ -1,5 +1,5 @@
 import React from "react";
-import aboutImage from "../images/image 2.png";
+import aboutImage from "../images/tosha.jpg";
 import styled from "styled-components";
 
 const Divider = styled.div`
