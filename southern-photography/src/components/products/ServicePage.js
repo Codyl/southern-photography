@@ -1,12 +1,8 @@
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { weddingServices, investmentServices } from "../shared/services";
+import { weddingServices, investmentServices } from "../../shared/services";
 import Helmet from "react-helmet";
-
-const ServiceItem = styled.img`
-  width: 80%;
-`;
 
 export default function ServicePage() {
   let location = useLocation().pathname.split("/")[2];
@@ -31,17 +27,12 @@ export default function ServicePage() {
       </Helmet>
       <div className="container">
         <div className="d-sm-flex">
-          <div style={{ width: "80%" }}>
-            <ServiceItem src={service.image} alt={service.name} />
+          <div className="w-80">
+            <img className="w-80" src={service.image} alt={service.name} />
           </div>
           <div className="container">
             <div style={{ margin: "20px 0" }}>
-              <h1
-                className="text-center"
-                style={{ fontSize: "40px", fontFamily: "Croissant One" }}
-              >
-                {service.name}
-              </h1>
+              <h1 className="text-center lg-text">{service.name}</h1>
               <div className="divider"></div>
             </div>
             <h2 style={{ textAlign: "center", fontStyle: "italic" }}>

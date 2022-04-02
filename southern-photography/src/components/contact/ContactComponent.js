@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { Form } from "reactstrap";
-import contactImage from "../images/letter.jpg";
+import contactImage from "../../images/letter.jpg";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { investmentServices, weddingServices } from "../shared/services";
+import { investmentServices, weddingServices } from "../../shared/services";
 import {
   Dropdown,
   DropdownToggle,
@@ -11,6 +11,7 @@ import {
   DropdownItem,
 } from "reactstrap";
 import Helmet from "react-helmet";
+import "./ContactComponent.css";
 
 const ContactForm = styled.div`
   padding: 30px;

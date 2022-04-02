@@ -1,16 +1,7 @@
-import styled from "styled-components";
 import ServiceImageButton from "./ServiceImageButton";
-import { investmentServices as services } from "../shared/services";
+import { investmentServices as services } from "../../shared/services";
 import Helmet from "react-helmet";
-
-const ServiceRow = styled.div`
-  width: 100vw;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  margin: 40px 0;
-`;
+import "./products.css";
 
 export default function Investments() {
   return (
@@ -36,16 +27,16 @@ export default function Investments() {
         Please select the Investment Photography session that best meets your
         needs to learn more.
       </p>
-      <ServiceRow>
+      <div className="service-row">
         {services.slice(0, 3).map((service) => (
           <ServiceImageButton key={service.name} service={service} />
         ))}
-      </ServiceRow>
-      <ServiceRow>
+      </div>
+      <div className="service-row">
         {services.slice(3, 6).map((service) => (
           <ServiceImageButton key={service.name} service={service} />
         ))}
-      </ServiceRow>
+      </div>
     </div>
   );
 }

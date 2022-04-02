@@ -147,5 +147,16 @@ const weddingServices = [
     image: wholeDay,
   },
 ];
+const getService = (location) => {
+  location = location.pathname.split("/")[2];
+  location = location.replace("%20", " ").toLowerCase();
+  const services = [
+    ...investmentServices,
+    ...weddingServices.filter((service) => service.name !== "bodouir"),
+  ];
+  return services.find((service) => {
+    return service.name === location;
+  });
+};
 
-export { weddingServices, investmentServices };
+export { weddingServices, investmentServices, getService };

@@ -63,7 +63,7 @@ export default function Header() {
   return (
     <>
       <Navbar2
-        onBlur={() => setTimeout(() => setOpen(false), 100)}
+        onBlur={() => setTimeout(() => setOpen(false), 250)}
         color="light"
         expand="md"
         light

@@ -1,20 +1,21 @@
 import "./App.css";
-import Header from "./components/HeaderComponent";
-import Home from "./components/HomeComponent";
-import { Route, Routes, BrowserRouter } from "react-router-dom";
-import About from "./components/AboutComponent";
-import Contact from "./components/ContactComponent";
-import Investments from "./components/InvestmentsComponent";
-import Wedding from "./components/WeddingComponent";
-import Portfolio from "./components/PortfolioComponent";
-import Service from "./components/ServicePage";
-import Booking from "./components/BookingComponent";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
-import styled from "styled-components";
 import { useLocation } from "react-router-dom";
 import "@stripe/stripe-js";
-import Cancel from "./components/CancelComponent";
-import Success from "./components/SuccessComponent";
+import { Route, Routes, BrowserRouter } from "react-router-dom";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+import styled from "styled-components";
+
+import Header from "./components/HeaderComponent";
+import Home from "./components/home/HomeComponent";
+import About from "./components/about/AboutComponent";
+import Contact from "./components/contact/ContactComponent";
+import Investments from "./components/products/InvestmentsComponent";
+import Wedding from "./components/products/WeddingComponent";
+import Portfolio from "./components/portfolio/PortfolioComponent";
+import Service from "./components/products/ServicePage";
+import Booking from "./components/booking/BookingComponent";
+import Cancel from "./components/booking/CancelComponent";
+import Success from "./components/booking/SuccessComponent";
 
 const main = styled.main``;
 
@@ -62,7 +63,7 @@ function App() {
   return (
     <BrowserRouter>
       <Header />
-      <div style={{ height: "10vh" }}></div>
+      <div style={{ height: "9vh" }}></div>
       {/* <SocialMedia/> */}
       <div className="App">
         <AnimatedSwitch />

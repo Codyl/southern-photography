@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
-import { investmentServices, weddingServices } from "../shared/services";
+import { investmentServices, weddingServices } from "../../shared/services";
 import {
   Dropdown,
   DropdownToggle,
@@ -10,94 +9,51 @@ import {
 } from "reactstrap";
 import Helmet from "react-helmet";
 import { useLocation } from "react-router-dom";
-
-const ImageGallery = styled.div`
-  margin: 0 5%;
-  @media screen and (min-width: 461px) {
-    height: 400px;
-    width: 90%;
-  }
-`;
-const ServicesListRect = styled.ul`
-  position: relative;
-  display: flex;
-  flex-wrap: wrap;
-  width: 90%;
-  justify-content: space-around;
-  list-style-type: none;
-  border-radius: 10px;
-  margin: 20px auto;
-  padding: 10px 0;
-  border: 1px solid black;
-  row-gap: 20px;
-`;
-const GalleryGradient = styled.div`
-  height: 400px;
-  width: 100px;
-  position: relative;
-  background: linear-gradient(269.36deg, white.45%, rgba(0, 0, 0, 0) 101.59%);
-`;
-
-const getImages = async (groupName) => {
-  try {
-    const response = await fetch(`http://localhost:3001/images/${groupName}`);
-    let files = await response.json();
-    return files;
-  } catch (err) {
-    console.error(err);
-  }
-};
-
-const getImage = async (imageName) => {
-  try {
-    const response = await fetch(`http://localhost:3001/image/${imageName}`);
-    return response.text();
-  } catch (e) {
-    console.log(e);
-  }
-};
+import "./PortfolioComponent.css";
+import { getImages } from "../../shared/requests";
 
 export default function Portfolio() {
   const [images, setImages] = useState(null);
-  let location = useLocation().pathname.split("/")[2];
-  location = location.replace("%20", " ").toLowerCase();
-  const [group, setGroup] = useState(location);
+  let location = useLocation().pathname.split("/")[2] ?? null;
+  location = location?.replace("%20", " ").toLowerCase();
+  const [group, setGroup] = useState(location ?? "couples");
   const [err, setErr] = useState(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggle = () => setDropdownOpen((prevState) => !prevState);
   useEffect(() => {
-    document.getElementById("senior")?.classList.add("active");
+    document.getElementById(group)?.classList.add("active");
   }, []);
 
   useEffect(() => {
     let isMounted = true;
+    setErr(null);
     (async () => {
       try {
         const imageNames = await getImages(group);
         if (isMounted) {
           setImages(imageNames);
+          setTimeout(() => {
+            if (imageNames && Array.isArray(imageNames) && imageNames.length) {
+              setErr(null);
+            } else {
+              console.log(imageNames);
+              setErr(
+                "Whoops! There are no images in this portfolio section. Check it again later or check out a different section."
+              );
+            }
+          }, 5000);
         }
       } catch (err) {
         console.log("Failed to fetch images");
         setErr("Failed to fetch images");
       }
     })();
+
     return () => {
       isMounted = false;
     };
   }, [group]);
-
-  useEffect(() => {
-    setTimeout(() => {
-      if (images && Array.isArray(images) && images.length) {
-        return;
-      }
-      setErr(
-        "Whoops! There are no images in this portfolio section. Check it again later or check out a different section."
-      );
-    }, 5000);
-  }, [location]);
 
   const setStyle = (e) => {
     document.querySelectorAll(".service-btn").forEach((btn) => {
@@ -119,7 +75,7 @@ export default function Portfolio() {
       </Helmet>
 
       {window.innerWidth > 461 ? (
-        <ServicesListRect>
+        <ul className="service-list-rect">
           {[
             ...investmentServices,
             ...weddingServices.filter((service) => service.name !== "bodouir"),
@@ -145,7 +101,7 @@ export default function Portfolio() {
               </div>
             </li>
           ))}
-        </ServicesListRect>
+        </ul>
       ) : (
         <Dropdown
           style={{ display: "inline" }}
@@ -182,54 +138,63 @@ export default function Portfolio() {
         </Dropdown>
       )}
 
-      <div>
-        <ImageGallery>
-          <div className="scrollbar" id="style-3">
-            {images && Array.isArray(images) && images.length ? (
-              images?.map(
-                (image, i) =>
-                  image && (
-                    <img
-                      src={image}
-                      style={{ height: "400px", margin: "0 10px" }}
-                      alt="portfolioImage"
-                      key={i}
-                    />
-                  )
-              )
-            ) : !err ? (
-              <Loading
-                color="dark"
-                type="grow"
-                style={{ width: "5rem", height: "5rem" }}
-                className="mx-auto"
-              />
-            ) : (
-              ""
-            )}
-          </div>
-          {images && Array.isArray(images) && images.length ? (
-            <div>
-              <GalleryGradient
-                style={{
-                  left: "100%",
-                  marginLeft: "-100px",
-                  bottom: "calc(100% + 17px)",
-                }}
-              />
-              <GalleryGradient
-                style={{
-                  transform: "rotate(180deg)",
-                  bottom: "calc(200% + 17px)",
-                }}
-              />
+      <div className="container">
+        {images && Array.isArray(images) && images.length ? (
+          <>
+            <div className="gallery">
+              <div className="scrollbar" id="style-3">
+                {images?.map(
+                  (image, i) =>
+                    image && (
+                      <img
+                        src={image}
+                        style={{ height: "400px", margin: "0 10px" }}
+                        alt="portfolioImage"
+                        key={i}
+                      />
+                    )
+                )}
+              </div>
+              {window.innerWidth > 461 &&
+              images &&
+              Array.isArray(images) &&
+              images.length ? (
+                <>
+                  <div
+                    className="gradient"
+                    style={{
+                      left: "100%",
+                      marginLeft: "-100px",
+                      bottom: "calc(100% + 17px)",
+                    }}
+                  />
+                  <div
+                    className="gradient"
+                    style={{
+                      transform: "rotate(180deg)",
+                      bottom: "calc(200% + 17px)",
+                    }}
+                  />
+                </>
+              ) : (
+                ""
+              )}
             </div>
-          ) : (
-            ""
-          )}
-        </ImageGallery>
+          </>
+        ) : !err ? (
+          <div className="mx-auto lg-text my-auto">
+            <Loading
+              color="dark"
+              type="grow"
+              style={{ width: "5rem", height: "5rem" }}
+            />
+            Searching for images...
+          </div>
+        ) : (
+          ""
+        )}
+        {err && <p className="md-text">{err}</p>}
       </div>
-      {err && <p className="md-text">{err}</p>}
     </div>
   );
 }

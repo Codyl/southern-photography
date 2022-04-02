@@ -1,0 +1,19 @@
+.lg-img {
+  position: relative;
+  width: 100vw;
+  max-height: 91vh;
+  height: auto;
+  z-index: -1;
+}
+blockquote {
+  position: relative;
+  padding: 0 30px;
+  font-size: 2rem;
+  z-index: 3;
+}
+figcaption {
+  display: block;
+  position: relative;
+  left: 70%;
+  margin: 0 30px;
+}
