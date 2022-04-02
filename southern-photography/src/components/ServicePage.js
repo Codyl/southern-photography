@@ -7,19 +7,6 @@ import Helmet from "react-helmet";
 const ServiceItem = styled.img`
   width: 80%;
 `;
-const BookingButton = styled(Link)`
-  background-color: white;
-  color: black;
-  font-family: Charmonman, cursive;
-  font-size: 2em;
-  border-radius: 32px;
-  padding: 5px 20px;
-  box-shadow: 3px 3px 8px black;
-  text-decoration: none;
-  position: relative;
-  left: 100%;
-  margin: -150px;
-`;
 
 export default function ServicePage() {
   let location = useLocation().pathname.split("/")[2];
@@ -91,9 +78,15 @@ export default function ServicePage() {
               )}
             </div>
             <div className="my-5">
-              <BookingButton to={`/book-session/${service.name}`}>
+              <Link className="custom-btn" to={`/portfolio/${service.name}`}>
+                View {service.name} portfolio
+              </Link>
+              <br />
+              <br />
+              <br />
+              <Link className="custom-btn" to={`/book-session/${service.name}`}>
                 Book Now
-              </BookingButton>
+              </Link>
             </div>
           </div>
         </div>

@@ -9,6 +9,7 @@ import {
   Spinner as Loading,
 } from "reactstrap";
 import Helmet from "react-helmet";
+import { useLocation } from "react-router-dom";
 
 const ImageGallery = styled.div`
   margin: 0 5%;
@@ -58,7 +59,9 @@ const getImage = async (imageName) => {
 
 export default function Portfolio() {
   const [images, setImages] = useState(null);
-  const [group, setGroup] = useState("senior");
+  let location = useLocation().pathname.split("/")[2];
+  location = location.replace("%20", " ").toLowerCase();
+  const [group, setGroup] = useState(location);
   const [err, setErr] = useState(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -85,6 +88,17 @@ export default function Portfolio() {
     };
   }, [group]);
 
+  useEffect(() => {
+    setTimeout(() => {
+      if (images && Array.isArray(images) && images.length) {
+        return;
+      }
+      setErr(
+        "Whoops! There are no images in this portfolio section. Check it again later or check out a different section."
+      );
+    }, 5000);
+  }, [location]);
+
   const setStyle = (e) => {
     document.querySelectorAll(".service-btn").forEach((btn) => {
       btn.classList.remove("active");
@@ -103,7 +117,7 @@ export default function Portfolio() {
         />
         <link rel="canonical" href="http://southern-images.com/portfolio" />
       </Helmet>
-      {err && <p>{err}</p>}
+
       {window.innerWidth > 461 ? (
         <ServicesListRect>
           {[
@@ -183,13 +197,15 @@ export default function Portfolio() {
                     />
                   )
               )
-            ) : (
+            ) : !err ? (
               <Loading
                 color="dark"
                 type="grow"
                 style={{ width: "5rem", height: "5rem" }}
                 className="mx-auto"
               />
+            ) : (
+              ""
             )}
           </div>
           {images && Array.isArray(images) && images.length ? (
@@ -213,6 +229,7 @@ export default function Portfolio() {
           )}
         </ImageGallery>
       </div>
+      {err && <p className="md-text">{err}</p>}
     </div>
   );
 }

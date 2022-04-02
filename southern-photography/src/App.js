@@ -25,6 +25,7 @@ const routes = [
   { path: "/investments", name: "investments", Component: Investments },
   { path: "/wedding", name: "wedding", Component: Wedding },
   { path: "/portfolio", name: "portfolio", Component: Portfolio },
+  { path: "/portfolio/:id", name: "portfolio", Component: Portfolio },
   { path: "/services/:id", name: "service", Component: Service },
   { path: "/book-session/:id", name: "book-now", Component: Booking },
   { path: "/book-session/cancel", name: "cancel", Component: Cancel },
