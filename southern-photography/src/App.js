@@ -12,6 +12,9 @@ import Booking from "./components/BookingComponent";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import styled from "styled-components";
 import { useLocation } from "react-router-dom";
+import "@stripe/stripe-js";
+import Cancel from "./components/CancelComponent";
+import Success from "./components/SuccessComponent";
 
 const main = styled.main``;
 
@@ -23,6 +26,9 @@ const routes = [
   { path: "/wedding", name: "wedding", Component: Wedding },
   { path: "/portfolio", name: "portfolio", Component: Portfolio },
   { path: "/services/:id", name: "service", Component: Service },
+  { path: "/book-session/:id", name: "book-now", Component: Booking },
+  { path: "/book-session/cancel", name: "cancel", Component: Cancel },
+  { path: "/book-session/success", name: "success", Component: Success },
 ];
 
 const AnimatedSwitch = () => {

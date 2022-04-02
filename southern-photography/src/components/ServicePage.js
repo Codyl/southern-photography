@@ -70,14 +70,14 @@ export default function ServicePage() {
               Add-on: Second Photographer $100 Per Hour
             </div>
             <div className="md-test">{service.numImages} images expected</div>
-            <div className="border m-3">
+            <div className="border m-3 p-4">
               <h4>Payment details</h4>
               <div className="md-test">25% Deposit Required at Booking</div>
               <div className="md-test">
                 Payment Plans Available upon request
               </div>
             </div>
-            <div className="border m-3">
+            <div className="border m-3 p-4">
               <h4>Travel details</h4>
               <div className="md-test">
                 Additional Travel Fee Will Be Applied (Over 20 Miles)
@@ -91,7 +91,9 @@ export default function ServicePage() {
               )}
             </div>
             <div className="my-5">
-              <BookingButton to="/contact">Book Now</BookingButton>
+              <BookingButton to={`/book-session/${service.name}`}>
+                Book Now
+              </BookingButton>
             </div>
           </div>
         </div>

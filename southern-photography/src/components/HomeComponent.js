@@ -13,16 +13,8 @@ const LargeImage = styled.img`
   z-index: -1;
 `;
 const BookingButton = styled(Link)`
-  background-color: white;
-  color: black;
   position: absolute;
-  top: 400px;
-  font-family: Charmonman, cursive;
-  font-size: 2em;
-  border-radius: 32px;
-  padding: 5px 20px;
-  box-shadow: 3px 3px 8px black;
-  text-decoration: none;
+  top: ${window.innerWidth < 461 ? "30%" : "50%"};
 `;
 const Blockquote = styled.blockquote`
   position: relative;
@@ -50,7 +42,9 @@ export default function Home() {
           src={window.innerWidth > 426 ? wideImage : tallImage}
           alt="Sample of family Photograph session"
         />
-        <BookingButton to="/contact">Book Now</BookingButton>
+        <BookingButton className="custom-btn" to="/portfolio">
+          View my photography work
+        </BookingButton>
       </div>
       <div style={{ overflow: "hidden", position: "relative", zIndex: 3 }}>
         <h3

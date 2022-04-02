@@ -15,14 +15,6 @@ import Helmet from "react-helmet";
 const ContactForm = styled.div`
   padding: 30px;
 `;
-const ContactButton = styled.button`
-  font-family: Charmonman, cursive;
-  border-radius: 16px;
-  padding: 5px 20px;
-  box-shadow: 3px 3px 8px black;
-  font-size: 1.5em;
-  margin: 1rem;
-`;
 const ContactParagraph = styled.p`
   font-size: 2em;
   margin: 10px 30px;
@@ -162,7 +154,7 @@ export default function Contact() {
                 rows="10"
                 placeholder="What is your vision?"
               ></textarea>
-              <ContactButton>Send Message</ContactButton>
+              <button className="custom-btn">Send Message</button>
             </Form>
           </ContactForm>
         </div>

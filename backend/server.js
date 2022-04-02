@@ -2,9 +2,6 @@ import express from "express";
 const app = express();
 import "dotenv/config";
 
-//requiring path and fs modules
-import path from "path";
-import fs from "fs";
 import bodyParser from "body-parser";
 import { getImage, getImages } from "./s3.js";
 
@@ -22,6 +19,10 @@ app.get("/images/:gid", async (req, res) => {
 app.get("/image/:id", async (req, res) => {
   const image = await getImage(req.params.id);
   res.send(image);
+});
+
+app.get("/stripe-key", (req, res) => {
+  res.send(process.env.REACT_APP_STRIPE_KEY);
 });
 
 app.listen(process.env.PORT);
