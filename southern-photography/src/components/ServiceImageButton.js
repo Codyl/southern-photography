@@ -30,7 +30,11 @@ const ServiceImageButton = ({ service }) => {
   return (
     <Link style={{ textDecoration: "none" }} to={`/services/${service.name}`}>
       <ServiceItem>
-        <ServiceItemImage className="enlarge" src={service.image} alt="" />
+        <ServiceItemImage
+          className="enlarge"
+          src={service.image}
+          alt={service.name}
+        />
       </ServiceItem>
       <div
         style={{

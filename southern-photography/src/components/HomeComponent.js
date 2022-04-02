@@ -3,6 +3,8 @@ import styled from "styled-components";
 import wideImage from "../images/title.jpg";
 import tallImage from "../images/sm-bg.jpg";
 import { Link } from "react-router-dom";
+import Helmet from "react-helmet";
+
 const LargeImage = styled.img`
   position: relative;
   width: 100vw;
@@ -30,9 +32,24 @@ const Blockquote = styled.blockquote`
 `;
 export default function Home() {
   return (
-    <>
+    <div>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Home - Southern Images</title>
+        <meta
+          name="description"
+          content="Reviews.I have known Tosha for 12 years. When she picked up the camera and
+            started doing photography that was it! She is always the one I call
+            on! Thank you so much for taking those memorable pictures every
+            time."
+        />
+        <link rel="canonical" href="http://southern-images.com/" />
+      </Helmet>
       <div className="d-flex justify-content-center">
-        <LargeImage src={window.innerWidth > 426 ? wideImage : tallImage} />
+        <LargeImage
+          src={window.innerWidth > 426 ? wideImage : tallImage}
+          alt="Sample of family Photograph session"
+        />
         <BookingButton to="/contact">Book Now</BookingButton>
       </div>
       <div style={{ overflow: "hidden", position: "relative", zIndex: 3 }}>
@@ -65,6 +82,6 @@ export default function Home() {
         </Blockquote>
         <hr />
       </div>
-    </>
+    </div>
   );
 }

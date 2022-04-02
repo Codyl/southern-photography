@@ -103,3 +103,6 @@ p {
   height: 125%;
   transform: translate(-12.5%, -12.5%);
 }
+.md-text {
+  font-size: 1.5rem;
+}

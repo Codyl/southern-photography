@@ -8,10 +8,8 @@ import {
   DropdownItem,
   Spinner as Loading,
 } from "reactstrap";
+import Helmet from "react-helmet";
 
-const Image = styled.img`
-  height: 100%;
-`;
 const ImageGallery = styled.div`
   margin: 0 5%;
   @media screen and (min-width: 461px) {
@@ -95,7 +93,16 @@ export default function Portfolio() {
   };
 
   return (
-    <>
+    <div>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Portfolio - Southern Images</title>
+        <meta
+          name="description"
+          content="A select few images of Tosha Breane's work. Find out if Southern Images is right for you by browsing these images."
+        />
+        <link rel="canonical" href="http://southern-images.com/portfolio" />
+      </Helmet>
       {err && <p>{err}</p>}
       {window.innerWidth > 461 ? (
         <ServicesListRect>
@@ -186,7 +193,7 @@ export default function Portfolio() {
             )}
           </div>
           {images && Array.isArray(images) && images.length ? (
-            <>
+            <div>
               <GalleryGradient
                 style={{
                   left: "100%",
@@ -200,12 +207,12 @@ export default function Portfolio() {
                   bottom: "calc(200% + 17px)",
                 }}
               />
-            </>
+            </div>
           ) : (
             ""
           )}
         </ImageGallery>
       </div>
-    </>
+    </div>
   );
 }

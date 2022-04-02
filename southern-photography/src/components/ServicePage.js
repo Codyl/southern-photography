@@ -1,8 +1,9 @@
 import { useLocation } from "react-router-dom";
-import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { weddingServices, investmentServices } from "../shared/services";
+import Helmet from "react-helmet";
+
 const ServiceItem = styled.img`
   width: 80%;
 `;
@@ -19,15 +20,7 @@ const BookingButton = styled(Link)`
   left: 100%;
   margin: -150px;
 `;
-const Divider = styled.div`
-  width: 80%;
-  height: 5px;
-  background-color: black;
-  margin: auto;
-`;
-const ServiceParagraph = styled.p`
-  font-size: 1.6rem;
-`;
+
 export default function ServicePage() {
   let location = useLocation().pathname.split("/")[2];
   location = location.replace("%20", " ").toLowerCase();
@@ -39,59 +32,67 @@ export default function ServicePage() {
     return service.name === location;
   });
   return (
-    <div className="container">
-      <div className="d-sm-flex">
-        <div style={{ width: "80%" }}>
-          <ServiceItem src={service.image} alt="" />
-        </div>
-        <div className="container">
-          <div style={{ margin: "20px 0" }}>
-            <h1
-              className="text-center"
-              style={{ fontSize: "40px", fontFamily: "Croissant One" }}
-            >
-              {service.name}
-            </h1>
-            <Divider />
+    <div className="md-test">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{service.name} Service - Southern Images</title>
+        <meta name="description" content={`${service.name}: ${service.desc}`} />
+        <link
+          rel="canonical"
+          href={`http://southern-images.com/services/${service.name}`}
+        />
+      </Helmet>
+      <div className="container">
+        <div className="d-sm-flex">
+          <div style={{ width: "80%" }}>
+            <ServiceItem src={service.image} alt={service.name} />
           </div>
-          <h2 style={{ textAlign: "center", fontStyle: "italic" }}>
-            {service.desc}
-          </h2>
-          <h3>{service.name} session details</h3>
-          <ServiceParagraph>
-            {service.sessionLength} hour{service.sessionLength > 1 && "s"}
-          </ServiceParagraph>
-          <ServiceParagraph>${service.price}</ServiceParagraph>
-          <ServiceParagraph>
-            {service.photographers} photographer
-          </ServiceParagraph>
-          <ServiceParagraph>
-            Add-on: Second Photographer $100 Per Hour
-          </ServiceParagraph>
-          <ServiceParagraph>
-            {service.numImages} images expected
-          </ServiceParagraph>
-          <div className="border m-3">
-            <h4>Payment details</h4>
-            <ServiceParagraph>25% Deposit Required at Booking</ServiceParagraph>
-            <ServiceParagraph>
-              Payment Plans Available upon request
-            </ServiceParagraph>
-          </div>
-          <div className="border m-3">
-            <h4>Travel details</h4>
-            <ServiceParagraph>
-              Additional Travel Fee Will Be Applied (Over 20 Miles)
-            </ServiceParagraph>
-            {service.type === "wedding" && (
-              <ServiceParagraph>
-                Inquiries for destination weddings, please email me. Additional
-                fees will be applied (Airfare, Lodging, & Transportation)
-              </ServiceParagraph>
-            )}
-          </div>
-          <div className="my-5">
-            <BookingButton to="/contact">Book Now</BookingButton>
+          <div className="container">
+            <div style={{ margin: "20px 0" }}>
+              <h1
+                className="text-center"
+                style={{ fontSize: "40px", fontFamily: "Croissant One" }}
+              >
+                {service.name}
+              </h1>
+              <div className="divider"></div>
+            </div>
+            <h2 style={{ textAlign: "center", fontStyle: "italic" }}>
+              {service.desc}
+            </h2>
+            <h3>{service.name} session details</h3>
+            <div className="md-test">
+              {service.sessionLength} hour{service.sessionLength > 1 && "s"}
+            </div>
+            <div className="md-test">${service.price}</div>
+            <div className="md-test">{service.photographers} photographer</div>
+            <div className="md-test">
+              Add-on: Second Photographer $100 Per Hour
+            </div>
+            <div className="md-test">{service.numImages} images expected</div>
+            <div className="border m-3">
+              <h4>Payment details</h4>
+              <div className="md-test">25% Deposit Required at Booking</div>
+              <div className="md-test">
+                Payment Plans Available upon request
+              </div>
+            </div>
+            <div className="border m-3">
+              <h4>Travel details</h4>
+              <div className="md-test">
+                Additional Travel Fee Will Be Applied (Over 20 Miles)
+              </div>
+              {service.type === "wedding" && (
+                <div className="md-test">
+                  Inquiries for destination weddings, please email me.
+                  Additional fees will be applied (Airfare, Lodging, &
+                  Transportation)
+                </div>
+              )}
+            </div>
+            <div className="my-5">
+              <BookingButton to="/contact">Book Now</BookingButton>
+            </div>
           </div>
         </div>
       </div>
