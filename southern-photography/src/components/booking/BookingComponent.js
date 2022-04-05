@@ -21,17 +21,25 @@ export default function Booking() {
       <div className="divider"></div>
       <div className="border container my-4 p-4">
         <h3 className="md-text">Your order details: </h3>
-        <p className="md-test">{service.name}</p>
+        <p className="md-test">Session: {service.name}</p>
         <p className="md-test">
-          {service.sessionLength} hour{service.sessionLength > 1 && "s"}
+          Time reserved: {service.sessionLength} hour
+          {service.sessionLength > 1 && "s"}
         </p>
-        <p className="md-test">${service.price}</p>
-        <p className="md-test">{service.photographers} photographer</p>
-        <p className="md-test">{service.numImages} images expected</p>
+        <p className="md-test">Reservation cost: ${service.price * 0.25}</p>
+        <p className="md-test">Remaining cost: ${service.price * 0.75}</p>
+        <p className="md-test">
+          Number of photographers: {service.photographers} photographer
+        </p>
+        <p className="md-test">
+          Number of images: {service.numImages} images expected
+        </p>
       </div>
       <button
         className="custom-btn mx-5"
-        onClick={() => redirectToCheckout(setLoading, setStripeError, service)}
+        onClick={() =>
+          redirectToCheckout({ setLoading, setStripeError, service })
+        }
         disabled={loading}
       >
         {loading ? "...loading please wait" : "Purchase"}

@@ -1,16 +1,11 @@
 import { useLocation } from "react-router-dom";
-import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { weddingServices, investmentServices } from "../../shared/services";
+import { services } from "../../shared/services";
 import Helmet from "react-helmet";
 
 export default function ServicePage() {
   let location = useLocation().pathname.split("/")[2];
   location = location.replace("%20", " ").toLowerCase();
-  const services = [
-    ...investmentServices,
-    ...weddingServices.filter((service) => service.name !== "bodouir"),
-  ];
   const service = services.find((service) => {
     return service.name === location;
   });
@@ -32,13 +27,18 @@ export default function ServicePage() {
           </div>
           <div className="container">
             <div style={{ margin: "20px 0" }}>
-              <h1 className="text-center lg-text">{service.name}</h1>
+              <h1 className="text-center lg-text">
+                {service.name.charAt(0).toUpperCase() + service.name.slice(1)}
+              </h1>
               <div className="divider"></div>
             </div>
             <h2 style={{ textAlign: "center", fontStyle: "italic" }}>
               {service.desc}
             </h2>
-            <h3>{service.name} session details</h3>
+            <h3>
+              {service.name.charAt(0).toUpperCase() + service.name.slice(1)}{" "}
+              session details
+            </h3>
             <div className="md-test">
               {service.sessionLength} hour{service.sessionLength > 1 && "s"}
             </div>

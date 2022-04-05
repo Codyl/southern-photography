@@ -2,7 +2,6 @@ export const getStripeKey = async () => {
   try {
     const response = await fetch("http://localhost:3001/stripe-key");
     const key = await response.text();
-    console.log(key);
     return key;
   } catch (err) {
     console.error(err);

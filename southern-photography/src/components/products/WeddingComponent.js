@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import ServiceImageButton from "./ServiceImageButton";
 import { weddingServices as services } from "../../shared/services";
 import Helmet from "react-helmet";

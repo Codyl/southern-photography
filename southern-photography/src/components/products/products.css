@@ -7,7 +7,7 @@
   transform: translate(-12.5%, -12.5%);
 }
 .service-row {
-  width: 100vw;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -38,8 +38,6 @@
   position: relative;
   bottom: 125px;
   transition: transform 200ms;
-}
-.service-item-text-container:hover {
 }
 .service-item-img-container {
   width: 250px;

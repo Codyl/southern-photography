@@ -16,7 +16,7 @@ export default function About() {
         <link rel="canonical" href="http://southern-images.com/about" />
       </Helmet>
       <div className="d-block d-md-flex justify-content-around">
-        <img src={aboutImage} alt="Tosha Breane at work" />
+        <img id="tosha" src={aboutImage} alt="Tosha Breane at work" />
         <div className="mx-4">
           <h1 className="text-center lg-text">About Me</h1>
           <div className="divider" />
